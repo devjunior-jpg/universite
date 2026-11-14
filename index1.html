@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Numérique UCAO-UUT — Foi • Science • Action | Lomé, Togo</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chargement des polices Inter et Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <!-- Chargement des icônes Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        ucao: {
+                            navy: '#0F294A',
+                            blue: '#1B3B6F',
+                            light: '#2A5298',
+                            gold: '#D4AF37',
+                            amber: '#EAB308',
+                            goldLight: '#FBF6E6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Styles personnalisés subtils pour l'identité institutionnelle UCAO-UUT */
+        .hero-pattern {
+            background-color: #0F294A;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.14) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .gold-gradient-border {
+            border-image: linear-gradient(to right, #0F294A, #D4AF37, #0F294A) 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-ucao-navy selection:text-ucao-gold flex flex-col min-h-screen">
+
+    <!-- Barre supérieure institutionnelle & Devise -->
+    <div class="bg-ucao-navy text-slate-200 text-xs py-2 px-4 border-b border-ucao-blue/60">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2.5">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-ucao-gold text-ucao-navy uppercase tracking-widest shadow-sm">
+                    Foi • Science • Action
+                </span>
+                <span class="truncate text-slate-200">Rentrée Académique 2026-2027 : Retrait des cartes d'étudiant et inscriptions pédagogiques ouverts à Sanguéra et Nukafu.</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-4 text-slate-300">
+                <button onclick="navigateTo('actualites')" class="hover:text-ucao-gold transition flex items-center gap-1.5 font-medium">
+                    <i data-lucide="bell-ring" class="w-3.5 h-3.5 text-ucao-gold"></i> Avis Scolarité (3)
+                </button>
+                <span class="text-slate-600">|</span>
+                <button onclick="navigateTo('contacts')" class="hover:text-ucao-gold transition flex items-center gap-1.5">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-ucao-gold"></i> Sanguéra / Nukafu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Principale (Header) -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Blason / Logo UCAO-UUT -->
+                <div onclick="navigateTo('accueil')" class="flex items-center gap-3.5 cursor-pointer group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-ucao-navy to-ucao-blue text-white flex flex-col items-center justify-center shadow-md border border-ucao-gold/40 group-hover:scale-105 transition">
+                        <i data-lucide="shield" class="w-5 h-5 text-ucao-gold"></i>
+                        <span class="text-[8px] font-bold tracking-tighter text-ucao-gold mt-0.5">UCAO-UUT</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-serif font-bold text-lg sm:text-xl text-ucao-navy leading-tight tracking-tight">
+                                UCAO-UUT
+                            </span>
+                            <span class="hidden sm:inline-block px-2 py-0.5 rounded bg-ucao-goldLight text-ucao-navy border border-ucao-gold/40 text-[10px] font-bold">
+                                LOMÉ • TOGO
+                            </span>
+                        </div>
+                        <span class="block text-[11px] font-medium text-slate-500 leading-tight mt-0.5">
+                            Université Catholique de l'Afrique de l'Ouest — Unité Universitaire au Togo
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden lg:flex items-center space-x-1" id="desktop-nav">
+                    <button data-nav="accueil" onclick="navigateTo('accueil')" class="nav-btn px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 bg-ucao-navy text-white shadow-sm">
+                        <i data-lucide="home" class="w-4 h-4 text-ucao-gold"></i> Accueil
+                    </button>
+                    <button data-nav="etablissement" onclick="navigateTo('etablissement')" class="nav-btn px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-ucao-navy hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="landmark" class="w-4 h-4"></i> L'Établissement
+                    </button>
+                    <button data-nav="filieres" onclick="navigateTo('filieres')" class="nav-btn px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-ucao-navy hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="w-4 h-4"></i> Filières & Formations
+                    </button>
+                    <button data-nav="actualites" onclick="navigateTo('actualites')" class="nav-btn px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-ucao-navy hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="newspaper" class="w-4 h-4"></i> Actualités & Infos
+                    </button>
+                    <button data-nav="contacts" onclick="navigateTo('contacts')" class="nav-btn px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-ucao-navy hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="phone-call" class="w-4 h-4"></i> Administration & Contacts
+                    </button>
+                </nav>
+
+                <!-- Bouton Menu Mobile -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl text-ucao-navy hover:bg-slate-100 focus:outline-none border border-slate-200">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Déroulant -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-1.5 shadow-xl">
+            <button data-nav="accueil" onclick="navigateTo('accueil'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold bg-ucao-navy text-white flex items-center gap-3">
+                <i data-lucide="home" class="w-4 h-4 text-ucao-gold"></i> Accueil
+            </button>
+            <button data-nav="etablissement" onclick="navigateTo('etablissement'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="landmark" class="w-4 h-4"></i> L'Établissement
+            </button>
+            <button data-nav="filieres" onclick="navigateTo('filieres'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i> Filières & Formations
+            </button>
+            <button data-nav="actualites" onclick="navigateTo('actualites'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="newspaper" class="w-4 h-4"></i> Actualités & Infos
+            </button>
+            <button data-nav="contacts" onclick="navigateTo('contacts'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="phone-call" class="w-4 h-4"></i> Administration & Contacts
+            </button>
+        </div>
+    </header>
+
+    <!-- Zone de Contenu Principal -->
+    <main class="flex-grow">
+
+        <!-- =========================================================
+             1. VUE ACCUEIL
+        ========================================================== -->
+        <section id="view-accueil" class="view-section">
+            <!-- Hero Section Institutionnelle UCAO-UUT -->
+            <div class="relative hero-pattern text-white overflow-hidden border-b-4 border-ucao-gold">
+                <div class="absolute inset-0 bg-gradient-to-r from-ucao-navy via-ucao-navy/95 to-ucao-blue/90"></div>
+                <!-- Halos décoratifs -->
+                <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-ucao-gold/15 blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-10 w-72 h-72 rounded-full bg-blue-500/15 blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-ucao-gold/40 text-ucao-gold text-xs font-bold uppercase tracking-widest mb-6">
+                            <i data-lucide="award" class="w-4 h-4"></i> Portail Numérique Officiel • Lomé (Sanguéra & Nukafu)
+                        </div>
+                        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight mb-6 leading-tight">
+                            Bienvenue sur le Portail Numérique de l'<span class="text-ucao-gold">UCAO-UUT</span>
+                        </h1>
+                        <p class="font-serif italic text-lg sm:text-xl text-amber-200/90 mb-4">
+                            « Excellence, Éthique et Innovation à Lomé »
+                        </p>
+                        <p class="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
+                            Retrouvez en un clic toutes les informations académiques de vos instituts et facultés (ISIT, ISG, FDSP, FSE), les calendriers d'examens, la vie des clubs étudiants et vos contacts administratifs.
+                        </p>
+
+                        <!-- Barre de recherche globale en temps réel -->
+                        <div class="relative max-w-2xl mx-auto">
+                            <div class="flex items-center bg-white rounded-2xl p-2 shadow-2xl border-2 border-ucao-gold/50 focus-within:border-ucao-gold transition">
+                                <i data-lucide="search" class="w-5 h-5 text-ucao-navy ml-3 shrink-0"></i>
+                                <input 
+                                    type="text" 
+                                    id="global-search-input"
+                                    oninput="handleGlobalSearch(this.value)"
+                                    placeholder="Rechercher une filière (ex: Génie Logiciel, CCA, Droit) ou une actu (ex: DevUCAO, Bourse)..." 
+                                    class="w-full px-4 py-2.5 text-slate-800 text-sm sm:text-base focus:outline-none bg-transparent"
+                                >
+                                <button onclick="clearGlobalSearch()" id="clear-search-btn" class="hidden px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-semibold text-slate-600 hover:text-ucao-navy">
+                                    Effacer
+                                </button>
+                            </div>
+
+                            <!-- Résultats instantanés -->
+                            <div id="global-search-results" class="hidden absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 text-left overflow-hidden z-30 max-h-96 overflow-y-auto">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 Boutons d'accès rapides -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14 max-w-6xl mx-auto">
+                        <button onclick="navigateTo('filieres')" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 hover:border-ucao-gold/60 rounded-2xl p-5 text-left transition group">
+                            <div class="w-11 h-11 rounded-xl bg-ucao-gold/20 text-ucao-gold flex items-center justify-center mb-3.5 group-hover:scale-110 transition">
+                                <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Découvrir nos filières</h3>
+                            <p class="text-xs text-slate-300 mt-1">ISIT, ISG, FDSP, FSE (Licence & Master)</p>
+                        </button>
+
+                        <button onclick="navigateTo('etablissement')" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 hover:border-ucao-gold/60 rounded-2xl p-5 text-left transition group">
+                            <div class="w-11 h-11 rounded-xl bg-blue-400/20 text-blue-300 flex items-center justify-center mb-3.5 group-hover:scale-110 transition">
+                                <i data-lucide="calendar-days" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Calendrier académique 2026-2027</h3>
+                            <p class="text-xs text-slate-300 mt-1">Semestres, congés & sessions d'examens</p>
+                        </button>
+
+                        <button onclick="navigateTo('contacts')" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 hover:border-ucao-gold/60 rounded-2xl p-5 text-left transition group">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-400/20 text-emerald-300 flex items-center justify-center mb-3.5 group-hover:scale-110 transition">
+                                <i data-lucide="headset" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Scolarité & Contacts</h3>
+                            <p class="text-xs text-slate-300 mt-1">Guichets Sanguéra, Nukafu & FAQ</p>
+                        </button>
+
+                        <button onclick="navigateTo('actualites'); filterNews('Vie Étudiante & Clubs');" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 hover:border-ucao-gold/60 rounded-2xl p-5 text-left transition group">
+                            <div class="w-11 h-11 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center mb-3.5 group-hover:scale-110 transition">
+                                <i data-lucide="code-2" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Vie Associative / DevUCAO</h3>
+                            <p class="text-xs text-slate-300 mt-1">Clubs étudiants, hackathons & pastorale</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chiffres Clés UCAO-UUT -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 sm:p-8 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="p-2">
+                        <div class="text-3xl sm:text-4xl font-bold text-ucao-navy font-serif">+3 500</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Étudiants accompagnés</div>
+                    </div>
+                    <div class="p-2 lg:border-l border-slate-100">
+                        <div class="text-3xl sm:text-4xl font-bold text-ucao-gold font-serif">4</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Instituts & Facultés</div>
+                    </div>
+                    <div class="p-2 lg:border-l border-slate-100">
+                        <div class="text-3xl sm:text-4xl font-bold text-ucao-navy font-serif">+20</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Filières LMD accréditées CAMES</div>
+                    </div>
+                    <div class="p-2 lg:border-l border-slate-100">
+                        <div class="text-3xl sm:text-4xl font-bold text-ucao-gold font-serif">92%</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Taux d'insertion professionnelle</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aperçu des 3 dernières actualités officielles -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-ucao-gold">Vie du Campus • Lomé</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ucao-navy mt-1">Dernières Actualités Officielles</h2>
+                    </div>
+                    <button onclick="navigateTo('actualites')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ucao-navy text-white text-xs sm:text-sm font-semibold hover:bg-ucao-blue transition">
+                        Toutes les actualités <i data-lucide="arrow-right" class="w-4 h-4 text-ucao-gold"></i>
+                    </button>
+                </div>
+
+                <div id="home-latest-news" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Injecté dynamiquement par JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             2. VUE L'ÉTABLISSEMENT
+        ========================================================== -->
+        <section id="view-etablissement" class="view-section hidden">
+            <div class="bg-ucao-navy text-white py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-ucao-gold">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-ucao-gold text-xs font-bold uppercase tracking-widest">Identité & Gouvernance</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">L'UCAO-UUT : Foi • Science • Action</h1>
+                    <p class="text-slate-300 mt-3 max-w-3xl text-sm sm:text-base">
+                        Unité Universitaire au Togo de l'Université Catholique de l'Afrique de l'Ouest (réseau régional présent dans 8 pays), implantée à Lomé sur les sites de Sanguéra et Nukafu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+                <!-- Présentation & Mot du Président -->
+                <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-4">
+                        <div class="relative rounded-2xl overflow-hidden bg-ucao-navy aspect-[4/3] lg:aspect-square shadow-lg border-2 border-ucao-gold/40">
+                            <img 
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" 
+                                onerror="this.src='https://placehold.co/600x600/0F294A/D4AF37?text=President+UCAO-UUT'"
+                                alt="Président de l'UCAO-UUT" 
+                                class="w-full h-full object-cover"
+                            >
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-ucao-navy via-ucao-navy/90 to-transparent p-5 text-white">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-ucao-gold block">Mot de la Présidence</span>
+                                <p class="font-serif font-bold text-lg mt-0.5">Rév. Père Dr. Koffi Adama</p>
+                                <p class="text-xs text-slate-300">Président de l'UCAO-UUT</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ucao-goldLight text-ucao-navy border border-ucao-gold/40 text-xs font-bold">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-ucao-gold"></i> Réseau Régional UCAO • Lomé, Togo
+                        </div>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ucao-navy">
+                            « Former des cadres compétents, intègres et acteurs du développement durable »
+                        </h2>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Chers étudiants, chers parents, bienvenue à l'Unité Universitaire au Togo de l'Université Catholique de l'Afrique de l'Ouest (UCAO-UUT). Fidèle à notre devise <strong>« Foi - Science - Action »</strong>, notre établissement allie rigueur scientifique, accréditation internationale (CAMES) et formation humaine intégrale.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Déployée sur le grand campus moderne de <strong>Sanguéra</strong> et l'annexe historique de <strong>Nukafu</strong> à Lomé, l'UCAO-UUT offre un encadrement personnalisé, des laboratoires équipés et une vie associative dynamique permettant à chaque étudiant d'exprimer pleinement ses talents.
+                        </p>
+                        <div class="pt-3 grid grid-cols-3 gap-4 border-t border-slate-100">
+                            <div class="bg-slate-50 p-3 rounded-xl">
+                                <span class="font-bold text-ucao-navy block text-sm">FOI</span>
+                                <span class="text-slate-500 text-xs">Éthique, intégrité & sens du service</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl">
+                                <span class="font-bold text-ucao-navy block text-sm">SCIENCE</span>
+                                <span class="text-slate-500 text-xs">Excellence LMD & diplômes CAMES</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl">
+                                <span class="font-bold text-ucao-navy block text-sm">ACTION</span>
+                                <span class="text-slate-500 text-xs">Professionnalisation & innovation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Les 4 Entités Académiques de l'UCAO-UUT -->
+                <div>
+                    <div class="mb-8">
+                        <span class="text-xs font-bold uppercase tracking-widest text-ucao-gold">Architecture Pédagogique</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ucao-navy mt-1">Nos 4 Instituts & Facultés</h2>
+                        <p class="text-sm text-slate-600 mt-1">Une offre de formation pluridisciplinaire structurée autour de pôles d'excellence.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- ISIT -->
+                        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:border-ucao-gold transition flex items-start gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-ucao-navy text-ucao-gold flex flex-col items-center justify-center shrink-0 font-bold text-xs shadow-sm">
+                                <i data-lucide="cpu" class="w-6 h-6 mb-0.5"></i>
+                                ISIT
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-ucao-navy">Institut Supérieur d'Ingénierie et de Technologie (ISIT)</h3>
+                                <p class="text-xs font-semibold text-ucao-gold mb-2">Génie Informatique, Réseaux & Télécommunications</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                                    Forme des ingénieurs de travaux et concepteurs en génie logiciel, administration réseaux, cybersécurité et systèmes d'information.
+                                </p>
+                                <button onclick="navigateTo('filieres'); filterByFaculty('ISIT');" class="text-xs font-bold text-ucao-navy hover:text-ucao-gold flex items-center gap-1">
+                                    Voir les filières ISIT <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ISG -->
+                        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:border-ucao-gold transition flex items-start gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-ucao-blue text-ucao-gold flex flex-col items-center justify-center shrink-0 font-bold text-xs shadow-sm">
+                                <i data-lucide="briefcase" class="w-6 h-6 mb-0.5"></i>
+                                ISG
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-ucao-navy">Institut Supérieur de Gestion (ISG)</h3>
+                                <p class="text-xs font-semibold text-ucao-gold mb-2">Management, Finance, Comptabilité & Marketing</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                                    Prépare aux métiers de l'audit (CCA), de la banque-finance, de la gestion des ressources humaines et de la communication d'entreprise.
+                                </p>
+                                <button onclick="navigateTo('filieres'); filterByFaculty('ISG');" class="text-xs font-bold text-ucao-navy hover:text-ucao-gold flex items-center gap-1">
+                                    Voir les filières ISG <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- FDSP -->
+                        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:border-ucao-gold transition flex items-start gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-ucao-navy text-ucao-gold flex flex-col items-center justify-center shrink-0 font-bold text-xs shadow-sm">
+                                <i data-lucide="scale" class="w-6 h-6 mb-0.5"></i>
+                                FDSP
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-ucao-navy">Faculté de Droit et de Sciences Politiques (FDSP)</h3>
+                                <p class="text-xs font-semibold text-ucao-gold mb-2">Droit des Affaires, Droit Public & Relations Internationales</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                                    Dispense une formation juridique de haut niveau adaptée à l'espace OHADA, au droit international et à la gouvernance publique.
+                                </p>
+                                <button onclick="navigateTo('filieres'); filterByFaculty('FDSP');" class="text-xs font-bold text-ucao-navy hover:text-ucao-gold flex items-center gap-1">
+                                    Voir les filières FDSP <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- FSE -->
+                        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:border-ucao-gold transition flex items-start gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-ucao-blue text-ucao-gold flex flex-col items-center justify-center shrink-0 font-bold text-xs shadow-sm">
+                                <i data-lucide="trending-up" class="w-6 h-6 mb-0.5"></i>
+                                FSE
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-ucao-navy">Faculté des Sciences Économiques (FSE)</h3>
+                                <p class="text-xs font-semibold text-ucao-gold mb-2">Économie Appliquée, Analyse de Projets & Développement</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                                    Forme des économistes analystes capables d'évaluer les politiques publiques, les projets de développement et la conjoncture économique.
+                                </p>
+                                <button onclick="navigateTo('filieres'); filterByFaculty('FSE');" class="text-xs font-bold text-ucao-navy hover:text-ucao-gold flex items-center gap-1">
+                                    Voir les filières FSE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructures du Campus (Sanguéra & Nukafu) -->
+                <div>
+                    <div class="mb-8">
+                        <span class="text-xs font-bold uppercase tracking-widest text-ucao-gold">Cadre d'Études & de Vie</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ucao-navy mt-1">Infrastructures des Campus (Sanguéra & Nukafu)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x400/0F294A/D4AF37?text=Bibliotheque+UCAO'" alt="Bibliothèque" class="w-full h-40 object-cover">
+                            <div class="p-5">
+                                <h3 class="font-bold text-base text-ucao-navy mb-1.5">Bibliothèque Universitaire</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">Fonds documentaire spécialisé (Droit OHADA, Gestion, Informatique), salles de lecture climatisées et accès aux bases numériques.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x400/0F294A/D4AF37?text=Labos+Info+ISIT'" alt="Laboratoires Informatiques" class="w-full h-40 object-cover">
+                            <div class="p-5">
+                                <h3 class="font-bold text-base text-ucao-navy mb-1.5">Labos Informatiques & Réseaux</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">Salles machines dédiées aux travaux pratiques de développement, administration système, routeurs Cisco et fibre optique haut débit.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x400/0F294A/D4AF37?text=Amphitheatres+Numeriques'" alt="Amphithéâtres" class="w-full h-40 object-cover">
+                            <div class="p-5">
+                                <h3 class="font-bold text-base text-ucao-navy mb-1.5">Amphithéâtres Numériques</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">Grands amphithéâtres équipés en vidéoprojection HD et sonorisation moderne sur le site principal de Sanguéra et à Nukafu.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x400/0F294A/D4AF37?text=Vie+Etudiante+Aumonerie'" alt="Vie Étudiante & Aumônerie" class="w-full h-40 object-cover">
+                            <div class="p-5">
+                                <h3 class="font-bold text-base text-ucao-navy mb-1.5">Vie Étudiante & Aumônerie</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">Foyer des étudiants, cafétéria, terrains de sport, espaces dédiés aux clubs (DevUCAO, Débat, Culture) et chapelle universitaire.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents Officiels Téléchargeables -->
+                <div class="bg-ucao-navy text-white rounded-3xl p-6 sm:p-10 shadow-lg border border-ucao-gold/30">
+                    <div class="mb-8">
+                        <span class="text-ucao-gold text-xs font-bold uppercase tracking-widest">Documentation Officielle</span>
+                        <h2 class="font-serif text-2xl font-bold mt-1">Documents & Guides Téléchargeables</h2>
+                        <p class="text-slate-300 text-sm mt-1">Consultez ou téléchargez les documents de référence de l'année académique 2026-2027.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="bg-white/10 backdrop-blur-sm p-5 rounded-2xl border border-white/15 flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-ucao-gold text-ucao-navy flex items-center justify-center shrink-0">
+                                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Calendrier Académique 2026-2027</h4>
+                                    <span class="text-xs text-slate-300">PDF • 1.2 Mo • Semestres 1 & 2</span>
+                                </div>
+                            </div>
+                            <button onclick="openDocPreview('Calendrier Académique UCAO-UUT 2026-2027', '• Rentrée solennelle : 19 Octobre 2026\n• Devoirs sur table S1 : 07 au 12 Décembre 2026\n• Congés de Noël : 20 Décembre 2026 au 04 Janvier 2027\n• Examens fin de Semestre 1 : 08 au 20 Février 2027\n• Début des cours Semestre 2 : 01 Mars 2027\n• Soutenances de mémoires L3 & M2 : Juillet 2027')" class="p-2.5 rounded-xl bg-ucao-gold hover:bg-amber-400 text-ucao-navy font-bold transition shrink-0" title="Aperçu & Téléchargement">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-sm p-5 rounded-2xl border border-white/15 flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-ucao-gold text-ucao-navy flex items-center justify-center shrink-0">
+                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Règlement Intérieur UCAO-UUT</h4>
+                                    <span class="text-xs text-slate-300">PDF • 1.8 Mo • Charte & Discipline</span>
+                                </div>
+                            </div>
+                            <button onclick="openDocPreview('Règlement Intérieur de l’UCAO-UUT', '• Assiduité obligatoire aux cours magistraux et travaux dirigés (minimum 80% de présence).\n• Port de la tenue décente et présentation obligatoire de la carte d’étudiant à l’entrée des campus de Sanguéra et Nukafu.\n• Respect strict du règlement des examens et de la propriété intellectuelle (lutte anti-plagiat).')" class="p-2.5 rounded-xl bg-ucao-gold hover:bg-amber-400 text-ucao-navy font-bold transition shrink-0" title="Aperçu & Téléchargement">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-sm p-5 rounded-2xl border border-white/15 flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-ucao-gold text-ucao-navy flex items-center justify-center shrink-0">
+                                    <i data-lucide="book-open-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Guide de l'Étudiant L1</h4>
+                                    <span class="text-xs text-slate-300">PDF • 2.4 Mo • Système LMD & Campus</span>
+                                </div>
+                            </div>
+                            <button onclick="openDocPreview('Guide Pratique de l’Étudiant de Première Année (L1)', '• Comprendre le système LMD : Unités d’Enseignement (UE), Crédits CECT (30 crédits/semestre) et capitalisation.\n• Modalités de paiement des frais de scolarité par tranches.\n• Parrainage académique : chaque étudiant de L1 est accompagné par un aîné de L3 ou Master.\n• Adhésion aux associations étudiantes (AE-UCAO, DevUCAO, Chorale, Clubs sportifs).')" class="p-2.5 rounded-xl bg-ucao-gold hover:bg-amber-400 text-ucao-navy font-bold transition shrink-0" title="Aperçu & Téléchargement">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             3. VUE FILIÈRES & FORMATIONS (SYSTÈME LMD)
+        ========================================================== -->
+        <section id="view-filieres" class="view-section hidden">
+            <div class="bg-ucao-navy text-white py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-ucao-gold">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-ucao-gold text-xs font-bold uppercase tracking-widest">Catalogue Académique CAMES</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">Filières & Formations (Système LMD)</h1>
+                    <p class="text-slate-300 mt-3 max-w-2xl text-sm sm:text-base">
+                        Découvrez nos formations accréditées en Licence et Master au sein de l'ISIT, l'ISG, la FDSP et la FSE. Cliquez sur « Voir le programme » pour consulter la maquette complète.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <!-- Filtres interactifs -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 mb-8 space-y-4">
+                    <div class="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+                        <!-- Recherche par mot-clé -->
+                        <div class="relative flex-grow max-w-md">
+                            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
+                            <input 
+                                type="text" 
+                                id="filiere-search"
+                                oninput="filterFilieres()"
+                                placeholder="Rechercher une filière (ex: Réseaux, CCA, Droit, Banque)..." 
+                                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-ucao-navy"
+                            >
+                        </div>
+
+                        <!-- Filtre Niveau -->
+                        <div class="flex flex-wrap gap-3">
+                            <select id="filiere-level-filter" onchange="filterFilieres()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 font-semibold text-ucao-navy focus:outline-none focus:border-ucao-navy">
+                                <option value="ALL">Tous les niveaux (Licence & Master)</option>
+                                <option value="Licence">Licence (Bac +3 • S1 à S6)</option>
+                                <option value="Master">Master (Bac +5 • M1 & M2)</option>
+                            </select>
+
+                            <select id="filiere-faculty-filter" onchange="filterFilieres()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 font-semibold text-ucao-navy focus:outline-none focus:border-ucao-navy">
+                                <option value="ALL">Tous les Instituts & Facultés</option>
+                                <option value="ISIT">ISIT (Génie Info & Télécoms)</option>
+                                <option value="ISG">ISG (Institut Supérieur de Gestion)</option>
+                                <option value="FDSP">FDSP (Droit & Sciences Politiques)</option>
+                                <option value="FSE">FSE (Sciences Économiques)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Boutons rapides par Institut -->
+                    <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-100">
+                        <span class="text-xs font-semibold text-slate-400 mr-1">Accès rapide :</span>
+                        <button onclick="filterByFaculty('ALL')" data-fac="ALL" class="fac-pill px-3 py-1.5 rounded-lg text-xs font-bold bg-ucao-navy text-white transition">Tous</button>
+                        <button onclick="filterByFaculty('ISIT')" data-fac="ISIT" class="fac-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">ISIT / Génie Info</button>
+                        <button onclick="filterByFaculty('ISG')" data-fac="ISG" class="fac-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">ISG</button>
+                        <button onclick="filterByFaculty('FDSP')" data-fac="FDSP" class="fac-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">FDSP</button>
+                        <button onclick="filterByFaculty('FSE')" data-fac="FSE" class="fac-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">FSE</button>
+                    </div>
+                </div>
+
+                <!-- Compteur -->
+                <div class="mb-6 flex justify-between items-center text-sm text-slate-500">
+                    <span id="filieres-count" class="font-medium text-ucao-navy">Affichage de 10 formations</span>
+                    <button onclick="resetFiliereFilters()" class="text-ucao-navy hover:text-ucao-gold font-semibold text-xs underline">
+                        Réinitialiser les filtres
+                    </button>
+                </div>
+
+                <!-- Grille des Filières -->
+                <div id="filieres-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Injecté dynamiquement par JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             4. VUE ACTUALITÉS & INFOS
+        ========================================================== -->
+        <section id="view-actualites" class="view-section hidden">
+            <div class="bg-ucao-navy text-white py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-ucao-gold">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-ucao-gold text-xs font-bold uppercase tracking-widest">Vie du Campus & Scolarité</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">Actualités & Informations Officielles</h1>
+                    <p class="text-slate-300 mt-3 max-w-2xl text-sm sm:text-base">
+                        Suivez les annonces de la Direction des Études, les calendriers d'examens, les conférences scientifiques et les activités des clubs étudiants comme DevUCAO.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+                <!-- Encart d'alerte : Avis Importants de la Scolarité -->
+                <div class="bg-ucao-goldLight border-2 border-ucao-gold/60 rounded-3xl p-6 sm:p-8 shadow-sm">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-11 h-11 rounded-xl bg-ucao-navy text-ucao-gold flex items-center justify-center shadow-sm shrink-0">
+                            <i data-lucide="megaphone" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-serif text-xl font-bold text-ucao-navy">Avis Importants de la Scolarité</h2>
+                            <p class="text-xs font-medium text-slate-600">Notes officielles affichées à Sanguéra et Nukafu</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-2xl border border-ucao-gold/40 shadow-sm">
+                            <span class="inline-block px-2.5 py-0.5 rounded-md bg-ucao-navy text-ucao-gold text-[11px] font-bold mb-2">Rentrée 2026-2027</span>
+                            <h3 class="font-bold text-ucao-navy text-sm mb-1">Retrait des cartes d'étudiant & quittances</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Les étudiants inscrits en L1, L2 et L3 sont invités à retirer leur carte biométrique au guichet de la Scolarité (Campus Sanguéra).</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-2xl border border-ucao-gold/40 shadow-sm">
+                            <span class="inline-block px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-900 text-[11px] font-bold mb-2">Bourses & Aides</span>
+                            <h3 class="font-bold text-ucao-navy text-sm mb-1">Dépôt des dossiers de bourse d'excellence</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">La commission sociale de l'UCAO-UUT reçoit les dossiers de demande d'exonération partielle jusqu'au 30 novembre 2026.</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-2xl border border-ucao-gold/40 shadow-sm">
+                            <span class="inline-block px-2.5 py-0.5 rounded-md bg-rose-100 text-rose-800 text-[11px] font-bold mb-2">Devoirs sur Table</span>
+                            <h3 class="font-bold text-ucao-navy text-sm mb-1">Calendrier des Devoirs Surveillés (DST)</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Les DST du Semestre 1 débuteront le lundi 07 décembre 2026. La régularité de la 1ère tranche de scolarité est requise.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtres par catégorie -->
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-8" id="news-category-filters">
+                        <button onclick="filterNews('ALL')" data-cat="ALL" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-ucao-navy text-white transition">
+                            Toutes
+                        </button>
+                        <button onclick="filterNews('Examens & Scolarité')" data-cat="Examens & Scolarité" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition">
+                            Examens & Scolarité
+                        </button>
+                        <button onclick="filterNews('Vie Étudiante & Clubs')" data-cat="Vie Étudiante & Clubs" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition">
+                            Vie Étudiante & Clubs
+                        </button>
+                        <button onclick="filterNews('Événements & Conférences')" data-cat="Événements & Conférences" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition">
+                            Événements & Conférences
+                        </button>
+                        <button onclick="filterNews('Administration')" data-cat="Administration" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition">
+                            Administration
+                        </button>
+                    </div>
+
+                    <!-- Grille des articles -->
+                    <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Injecté dynamiquement par JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             5. VUE ADMINISTRATION & CONTACTS
+        ========================================================== -->
+        <section id="view-contacts" class="view-section hidden">
+            <div class="bg-ucao-navy text-white py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-ucao-gold">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-ucao-gold text-xs font-bold uppercase tracking-widest">Guichets & Orientation Étudiante</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">Administration & Contacts UCAO-UUT</h1>
+                    <p class="text-slate-300 mt-3 max-w-2xl text-sm sm:text-base">
+                        Retrouvez les coordonnées des services sur nos deux sites de Lomé (Campus Principal de Sanguéra et Annexe de Nukafu) ou transmettez votre demande en ligne.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+                <!-- Annuaire complet des 5 services -->
+                <div>
+                    <h2 class="font-serif text-2xl font-bold text-ucao-navy mb-6">Annuaire des Services de l'UCAO-UUT</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- 1. Service de la Scolarité & Inscriptions -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-ucao-navy text-ucao-gold flex items-center justify-center mb-4">
+                                    <i data-lucide="file-badge" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="font-bold text-base text-ucao-navy">Service de la Scolarité & Inscriptions</h3>
+                                <span class="text-xs font-semibold text-ucao-gold block mt-0.5 mb-3">Dossiers, Cartes d'étudiant, Attestations</span>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                    Accueil des nouveaux bacheliers, validation des inscriptions administratives et pédagogiques, délivrance des relevés de notes et diplômes.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-ucao-navy shrink-0 mt-0.5"></i> Campus Principal Sanguéra (Bâtiment Admin)</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-ucao-navy shrink-0"></i> Lun - Ven : 07h30 – 12h30 / 14h30 – 17h30</div>
+                                <div class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-ucao-navy shrink-0"></i> +228 22 25 27 80 • scolarite@ucao-uut.tg</div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Direction des Études (ISIT, ISG, FDSP, FSE) -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-ucao-blue text-ucao-gold flex items-center justify-center mb-4">
+                                    <i data-lucide="book-marked" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="font-bold text-base text-ucao-navy">Direction des Études (ISIT, ISG, FDSP, FSE)</h3>
+                                <span class="text-xs font-semibold text-ucao-gold block mt-0.5 mb-3">Emplois du temps, Examens & Stages</span>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                    Coordination pédagogique des 4 facultés et instituts, planification des cours, suivi des stages et organisation des jurys de soutenance.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-ucao-navy shrink-0 mt-0.5"></i> Sanguéra (Bloc Pédagogique) & Annexe Nukafu</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-ucao-navy shrink-0"></i> Lun - Sam : 08h00 – 17h00</div>
+                                <div class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-ucao-navy shrink-0"></i> +228 22 25 27 82 • etudes@ucao-uut.tg</div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Service Comptabilité & Recouvrement -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-ucao-goldLight text-ucao-navy border border-ucao-gold/40 flex items-center justify-center mb-4">
+                                    <i data-lucide="wallet" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="font-bold text-base text-ucao-navy">Service Comptabilité & Recouvrement</h3>
+                                <span class="text-xs font-semibold text-ucao-gold block mt-0.5 mb-3">Frais de scolarité, Quittances & Échéanciers</span>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                    Enregistrement des bordereaux bancaires et paiements mobiles (Yas / Moov), délivrance des quitus financiers pour les examens.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-ucao-navy shrink-0 mt-0.5"></i> Sanguéra (Guichet Caisse) & Bureau Nukafu</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-ucao-navy shrink-0"></i> Lun - Ven : 08h00 – 16h30</div>
+                                <div class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-ucao-navy shrink-0"></i> +228 22 25 27 85 • comptabilite@ucao-uut.tg</div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Bibliothèque & Documentation -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-ucao-navy text-ucao-gold flex items-center justify-center mb-4">
+                                    <i data-lucide="library" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="font-bold text-base text-ucao-navy">Bibliothèque & Documentation</h3>
+                                <span class="text-xs font-semibold text-ucao-gold block mt-0.5 mb-3">Ouvrages, Mémoires & Ressources Numériques</span>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                    Consultation sur place et prêt d'ouvrages spécialisés, dépôt des mémoires de fin de cycle et accès aux revues scientifiques en ligne.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-ucao-navy shrink-0 mt-0.5"></i> Campus Sanguéra (Aile Est) & Salle Nukafu</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-ucao-navy shrink-0"></i> Lun - Sam : 07h30 – 19h30</div>
+                                <div class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-ucao-navy shrink-0"></i> bibliotheque@ucao-uut.tg</div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Vie Étudiante & Parrainage L1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-11 h-11 rounded-xl bg-ucao-blue text-ucao-gold flex items-center justify-center shrink-0">
+                                        <i data-lucide="users" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-base text-ucao-navy">Vie Étudiante, Aumônerie & Parrainage L1</h3>
+                                        <span class="text-xs font-semibold text-ucao-gold">Associations, Clubs (DevUCAO), Sport & Accompagnement Social</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                    Interface entre l'administration et l'Association des Étudiants de l'UCAO-UUT (AE-UCAO). Coordination du programme de parrainage des nouveaux bacheliers (L1), soutien aux clubs technologiques et culturels, et écoute spirituelle à l'Aumônerie.
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-ucao-navy shrink-0"></i> Foyer Étudiant — Campus Principal Sanguéra</div>
+                                <div class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-ucao-navy shrink-0"></i> vie.etudiante@ucao-uut.tg • +228 90 12 45 67</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grille FAQ + Formulaire de Contact avec Récépissé -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- FAQ Interactive en Accordéon -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-ucao-gold">Questions Fréquentes</span>
+                        <h2 class="font-serif text-2xl font-bold text-ucao-navy">Foire Aux Questions (FAQ)</h2>
+                        <p class="text-sm text-slate-600 mb-4">Réponses rapides aux démarches courantes des étudiants de l'UCAO-UUT.</p>
+
+                        <div class="space-y-3">
+                            <!-- FAQ 1 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(1)" class="w-full px-5 py-4 text-left font-bold text-sm text-ucao-navy flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Comment obtenir une attestation d'inscription ou un relevé de notes ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-1" class="w-4 h-4 text-ucao-gold transition-transform"></i>
+                                </button>
+                                <div id="faq-content-1" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Présentez-vous au guichet du <strong>Service de la Scolarité (Campus Sanguéra)</strong> muni de votre carte d'étudiant de l'année en cours et de votre reçu de paiement de la 1ère tranche. Le délai de délivrance d'une attestation d'inscription est de 24h à 48h ouvrées.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 2 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(2)" class="w-full px-5 py-4 text-left font-bold text-sm text-ucao-navy flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Comment régler les tranches de scolarité (Yas, Moov ou Banque) ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-2" class="w-4 h-4 text-ucao-gold transition-transform"></i>
+                                </button>
+                                <div id="faq-content-2" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Les frais de scolarité sont payables en 3 tranches via les comptes bancaires partenaires de l'UCAO-UUT (Ecobank, Orabank, BTCI) ou via paiement mobile marchand <strong>Mixx by Yas / Flooz (Moov)</strong> en indiquant votre numéro matricule. Déposez ensuite le reçu à la Comptabilité pour obtenir votre quittance officielle.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 3 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(3)" class="w-full px-5 py-4 text-left font-bold text-sm text-ucao-navy flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Comment se connecter au réseau Wi-Fi des campus de Sanguéra et Nukafu ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-3" class="w-4 h-4 text-ucao-gold transition-transform"></i>
+                                </button>
+                                <div id="faq-content-3" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Sélectionnez le réseau <strong>UCAO-UUT-CAMPUS</strong> et authentifiez-vous avec votre numéro matricule étudiant et le mot de passe temporaire remis lors de votre inscription. En cas d'oubli, adressez-vous au laboratoire informatique de l'ISIT.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 4 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(4)" class="w-full px-5 py-4 text-left font-bold text-sm text-ucao-navy flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Existe-t-il des navettes entre Lomé-centre (Nukafu) et le campus de Sanguéra ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-4" class="w-4 h-4 text-ucao-gold transition-transform"></i>
+                                </button>
+                                <div id="faq-content-4" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Oui, des bus universitaires assurent des rotations quotidiennes le matin (départ 06h45) et en fin d'après-midi entre l'annexe de Nukafu, les grands axes de Lomé et le campus principal de Sanguéra sur présentation de la carte d'étudiant.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de Contact en Ligne avec Génération de Récépissé -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md">
+                            <span class="text-xs font-bold uppercase tracking-widest text-ucao-gold">Guichet Numérique</span>
+                            <h2 class="font-serif text-2xl font-bold text-ucao-navy mt-1">Transmettre une Demande</h2>
+                            <p class="text-sm text-slate-600 mt-1 mb-6">Sélectionnez le service concerné. Un récépissé électronique avec numéro de ticket vous sera immédiatement délivré.</p>
+
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-ucao-navy mb-1.5">Nom & Prénoms *</label>
+                                        <input type="text" id="contact-name" required placeholder="Ex: Kodjo Mensah" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-ucao-navy">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-ucao-navy mb-1.5">Matricule Étudiant (optionnel)</label>
+                                        <input type="text" id="contact-matricule" placeholder="Ex: UCAO-26-1048" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-ucao-navy">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-ucao-navy mb-1.5">Email de réponse *</label>
+                                        <input type="email" id="contact-email" required placeholder="etudiant@exemple.tg" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-ucao-navy">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-ucao-navy mb-1.5">Service destinataire *</label>
+                                        <select id="contact-service" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm bg-white font-medium text-ucao-navy focus:outline-none focus:border-ucao-navy">
+                                            <option value="Service de la Scolarité & Inscriptions">Service de la Scolarité & Inscriptions</option>
+                                            <option value="Direction des Études (ISIT / ISG / FDSP / FSE)">Direction des Études (ISIT / ISG / FDSP / FSE)</option>
+                                            <option value="Service Comptabilité & Recouvrement">Service Comptabilité & Recouvrement</option>
+                                            <option value="Bibliothèque & Documentation">Bibliothèque & Documentation</option>
+                                            <option value="Vie Étudiante & Parrainage L1">Vie Étudiante & Parrainage L1</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-ucao-navy mb-1.5">Objet de la demande *</label>
+                                    <input type="text" id="contact-subject" required placeholder="Ex: Demande d'attestation d'inscription L2 ISIT" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-ucao-navy">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-ucao-navy mb-1.5">Message détaillé *</label>
+                                    <textarea rows="4" id="contact-message" required placeholder="Précisez votre institut/faculté, votre niveau (L1, L2, L3, M1, M2) et l'objet exact de votre démarche..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-ucao-navy"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-ucao-navy hover:bg-ucao-blue text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+                                    <i data-lucide="send" class="w-4 h-4 text-ucao-gold"></i> Envoyer ma demande et générer le récépissé
+                                </button>
+                            </form>
+
+                            <!-- Récépissé officiel généré après envoi -->
+                            <div id="contact-receipt" class="hidden mt-4 p-6 rounded-2xl bg-ucao-goldLight border-2 border-ucao-gold text-ucao-navy">
+                                <div class="flex items-center justify-between border-b border-ucao-gold/40 pb-3 mb-3">
+                                    <div class="flex items-center gap-2">
+                                        <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-700"></i>
+                                        <span class="font-serif font-bold text-base">Récépissé de Demande Enregistrée</span>
+                                    </div>
+                                    <span id="receipt-ticket" class="px-2.5 py-1 rounded-lg bg-ucao-navy text-ucao-gold font-mono text-xs font-bold">
+                                        #UCAO-000000
+                                    </span>
+                                </div>
+                                <div class="space-y-1.5 text-xs text-slate-700" id="receipt-body">
+                                    <!-- Rempli par JS -->
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-ucao-gold/40 flex flex-wrap justify-between items-center gap-2">
+                                    <button onclick="copyReceiptTicket()" class="px-3 py-1.5 rounded-lg bg-ucao-navy text-white text-xs font-semibold hover:bg-ucao-blue transition flex items-center gap-1.5">
+                                        <i data-lucide="copy" class="w-3.5 h-3.5 text-ucao-gold"></i> Copier le N° de ticket
+                                    </button>
+                                    <button onclick="resetContactForm()" class="text-xs font-bold underline text-ucao-navy hover:text-ucao-blue">
+                                        Nouvelle demande
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         MODALE DÉTAILS (PROGRAMME FILIÈRE / ARTICLE / DOCUMENT)
+    ========================================================== -->
+    <div id="detail-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-ucao-navy/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border-2 border-ucao-gold/40 relative">
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-ucao-navy hover:text-white text-slate-600 flex items-center justify-center transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="modal-body" class="p-6 sm:p-8">
+                <!-- Contenu dynamique -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-ucao-navy text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-ucao-gold/50 flex items-center gap-3 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-ucao-gold shrink-0"></i>
+            <span id="toast-message">Action effectuée</span>
+        </div>
+    </div>
+
+    <!-- Footer Institutionnel UCAO-UUT -->
+    <footer class="bg-ucao-navy text-slate-300 border-t-4 border-ucao-gold mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2.5 text-white mb-3">
+                        <i data-lucide="shield" class="w-6 h-6 text-ucao-gold"></i>
+                        <span class="font-serif font-bold text-lg tracking-tight">UCAO-UUT</span>
+                    </div>
+                    <span class="inline-block px-2.5 py-0.5 rounded bg-white/10 text-ucao-gold text-[10px] font-bold uppercase tracking-widest mb-3">
+                        Foi • Science • Action
+                    </span>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Université Catholique de l'Afrique de l'Ouest — Unité Universitaire au Togo. Établissement d'enseignement supérieur privé d'utilité publique reconnu par l'État togolais et le CAMES.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Portail Étudiant</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateTo('accueil')" class="hover:text-ucao-gold transition">Accueil du portail</button></li>
+                        <li><button onclick="navigateTo('etablissement')" class="hover:text-ucao-gold transition">L'UCAO-UUT & ses 4 entités</button></li>
+                        <li><button onclick="navigateTo('filieres')" class="hover:text-ucao-gold transition">Filières LMD (ISIT, ISG, FDSP, FSE)</button></li>
+                        <li><button onclick="navigateTo('actualites')" class="hover:text-ucao-gold transition">Actualités & Avis de la scolarité</button></li>
+                        <li><button onclick="navigateTo('contacts')" class="hover:text-ucao-gold transition">Annuaire & Contacts</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Instituts & Facultés</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateTo('filieres'); filterByFaculty('ISIT');" class="hover:text-ucao-gold transition">ISIT — Génie Info & Télécoms</button></li>
+                        <li><button onclick="navigateTo('filieres'); filterByFaculty('ISG');" class="hover:text-ucao-gold transition">ISG — Institut Supérieur de Gestion</button></li>
+                        <li><button onclick="navigateTo('filieres'); filterByFaculty('FDSP');" class="hover:text-ucao-gold transition">FDSP — Droit & Sciences Politiques</button></li>
+                        <li><button onclick="navigateTo('filieres'); filterByFaculty('FSE');" class="hover:text-ucao-gold transition">FSE — Sciences Économiques</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Campus & Coordonnées</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-ucao-gold shrink-0 mt-0.5"></i>
+                            <span>Campus Principal : Sanguéra, Lomé<br>Annexe : Nukafu, Lomé — BP 1502 Lomé, Togo</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-ucao-gold shrink-0"></i>
+                            <span>+228 22 25 27 80 / +228 90 12 45 67</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-ucao-gold shrink-0"></i>
+                            <span>contact@ucao-uut.tg</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-ucao-blue/60 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+                <p>© 2026 UCAO-UUT (Lomé, Togo — BP 1502 Lomé). Tous droits réservés.</p>
+                <div class="flex space-x-4">
+                    <span>Accréditation CAMES</span>
+                    <span>•</span>
+                    <span>Charte Numérique</span>
+                    <span>•</span>
+                    <span>Mentions Légales</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         DONNÉES & LOGIQUE JAVASCRIPT UCAO-UUT
+    ========================================================== -->
+    <script>
+        let currentTicketNumber = '';
+
+        // --- 1. FILIÈRES PHARES DE L'UCAO-UUT (ISIT, ISG, FDSP, FSE) ---
+        const filieresData = [
+            {
+                id: 'f1',
+                titre: 'Génie Logiciel & Systèmes d’Information',
+                niveau: 'Licence',
+                faculte: 'ISIT',
+                faculteNom: 'Institut Supérieur d’Ingénierie et de Technologie (ISIT)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Principal Sanguéra',
+                admission: 'Baccalauréat séries C, D, E ou F2. Sélection sur étude de dossier scolaire.',
+                semestres: [
+                    'S1 - S2 : Algorithmique et programmation C/Python, Architecture des ordinateurs, Algèbre & Analyse, Anglais technique, Éthique & Anthropologie.',
+                    'S3 - S4 : Conception orientée objet (UML/Java), Bases de données relationnelles (SQL/PostgreSQL), Développement Web Fullstack, Systèmes Linux.',
+                    'S5 - S6 : Génie logiciel & Méthodes Agiles, Développement Mobile, Sécurité des applications, Projet tuteuré et Stage professionnel (3 mois).'
+                ],
+                debouches: 'Développeur Fullstack, Concepteur de Systèmes d’Information, Administrateur de Bases de Données, Chef de projet junior.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 480 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f2',
+                titre: 'Réseaux & Télécommunications',
+                niveau: 'Licence',
+                faculte: 'ISIT',
+                faculteNom: 'Institut Supérieur d’Ingénierie et de Technologie (ISIT)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Principal Sanguéra',
+                admission: 'Baccalauréat séries C, D, E, F2 ou F3. Étude de dossier.',
+                semestres: [
+                    'S1 - S2 : Électronique analogique et numérique, Physique des ondes, Fondamentaux des réseaux (Modèle OSI/TCP-IP), Programmation.',
+                    'S3 - S4 : Commutation et Routage (CCNA), Transmission numérique, Administration serveurs Windows/Linux, Téléphonie IP (VoIP).',
+                    'S5 - S6 : Réseaux mobiles (4G/5G) et Fibre optique, Sécurité des infrastructures réseaux, Cloud & Virtualisation, Stage en entreprise.'
+                ],
+                debouches: 'Administrateur Réseaux et Systèmes, Technicien supérieur Télécoms, Intégrateur VoIP, Responsable sécurité réseau junior.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 480 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f3',
+                titre: 'Master Professionnel en Cybersécurité & Ingénierie des Systèmes',
+                niveau: 'Master',
+                faculte: 'ISIT',
+                faculteNom: 'Institut Supérieur d’Ingénierie et de Technologie (ISIT)',
+                duree: '2 ans (4 semestres • 120 crédits CECT)',
+                campus: 'Campus Principal Sanguéra',
+                admission: 'Licence en Génie Logiciel, Réseaux & Télécoms ou diplôme équivalent reconnu par le CAMES.',
+                semestres: [
+                    'M1 (S1 - S2) : Cryptographie appliquée, Sécurité des réseaux d’entreprise, Audit et Tests d’intrusion (Pentest), DevSecOps & Cloud.',
+                    'M2 (S3 - S4) : Gouvernance de la sécurité (ISO 27001), Forensique numérique, Management de projets IT et Mémoire de fin d’études.'
+                ],
+                debouches: 'Ingénieur Cybersécurité, Auditeur sécurité SI, Architecte Cloud & Réseaux, Responsable Sécurité des Systèmes d’Information (RSSI).',
+                frais: 'Inscription : 65 000 FCFA | Scolarité annuelle : 650 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f4',
+                titre: 'Comptabilité - Contrôle - Audit (CCA)',
+                niveau: 'Licence',
+                faculte: 'ISG',
+                faculteNom: 'Institut Supérieur de Gestion (ISG)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Sanguéra & Annexe Nukafu',
+                admission: 'Baccalauréat séries G2, G3, C, D ou A4 avec solide niveau en mathématiques et gestion.',
+                semestres: [
+                    'S1 - S2 : Comptabilité générale (Système OHADA), Microéconomie, Mathématiques financières, Droit civil et commercial.',
+                    'S3 - S4 : Comptabilité des sociétés, Analyse financière, Fiscalité des entreprises togolaises, Contrôle de gestion.',
+                    'S5 - S6 : Audit comptable et financier, Normes IFRS, Logiciels comptables (Sage Saari), Stage pratique en cabinet.'
+                ],
+                debouches: 'Collaborateur en cabinet d’expertise comptable, Contrôleur de gestion junior, Auditeur interne, Chef comptable.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 420 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f5',
+                titre: 'Marketing & Communication des Organisations',
+                niveau: 'Licence',
+                faculte: 'ISG',
+                faculteNom: 'Institut Supérieur de Gestion (ISG)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Sanguéra & Annexe Nukafu',
+                admission: 'Baccalauréat toutes séries (A4, G1, G2, G3, D, C).',
+                semestres: [
+                    'S1 - S2 : Fondamentaux du marketing, Techniques d’expression et communication, Comportement du consommateur, Économie d’entreprise.',
+                    'S3 - S4 : Études de marché, Stratégie de marque, Communication événementielle et Relations publiques, Négociation commerciale.',
+                    'S5 - S6 : Marketing digital & Social Media, Commerce international, Plan marketing opérationnel et Stage en entreprise.'
+                ],
+                debouches: 'Chargé de communication, Chef de produit junior, Responsable marketing digital, Attaché commercial.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 420 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f6',
+                titre: 'Banque - Finance - Assurance',
+                niveau: 'Licence',
+                faculte: 'ISG',
+                faculteNom: 'Institut Supérieur de Gestion (ISG)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Sanguéra & Annexe Nukafu',
+                admission: 'Baccalauréat séries G2, G3, C, D ou A4.',
+                semestres: [
+                    'S1 - S2 : Économie monétaire et bancaire, Comptabilité générale, Statistiques et probabilités, Introduction au droit.',
+                    'S3 - S4 : Techniques bancaires, Droit bancaire (UEMOA), Gestion de portefeuille, Techniques d’assurance.',
+                    'S5 - S6 : Analyse du risque crédit, Finance d’entreprise, Microfinance et Inclusion financière, Stage en institution financière.'
+                ],
+                debouches: 'Chargé de clientèle bancaire, Gestionnaire de sinistres en assurance, Analyste crédit junior, Agent de microfinance.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 430 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f7',
+                titre: 'Master Professionnel en Audit, Contrôle de Gestion & Finance',
+                niveau: 'Master',
+                faculte: 'ISG',
+                faculteNom: 'Institut Supérieur de Gestion (ISG)',
+                duree: '2 ans (4 semestres • 120 crédits CECT)',
+                campus: 'Annexe Nukafu (Cours du jour et du soir)',
+                admission: 'Licence en CCA, Finance, Gestion ou Économie.',
+                semestres: [
+                    'M1 (S1 - S2) : Audit légal et contractuel, Ingénierie financière, Contrôle de gestion stratégique, Droit fiscal approfondi.',
+                    'M2 (S3 - S4) : Consolidation des comptes OHADA/IFRS, Gouvernance d’entreprise, Stage de 6 mois et Soutenance de mémoire.'
+                ],
+                debouches: 'Auditeur financier senior, Directeur Administratif et Financier (DAF), Contrôleur de gestion, Consultant financier.',
+                frais: 'Inscription : 65 000 FCFA | Scolarité annuelle : 620 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f8',
+                titre: 'Droit des Affaires & Fiscalité',
+                niveau: 'Licence',
+                faculte: 'FDSP',
+                faculteNom: 'Faculté de Droit et de Sciences Politiques (FDSP)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Principal Sanguéra',
+                admission: 'Baccalauréat séries A4, G1, D ou C. Bonne maîtrise de la langue française.',
+                semestres: [
+                    'S1 - S2 : Introduction générale au droit, Droit constitutionnel, Droit des personnes et de la famille, Histoire du droit.',
+                    'S3 - S4 : Droit des obligations (Contrats et Responsabilité), Droit commercial général OHADA, Droit administratif.',
+                    'S5 - S6 : Droit des sociétés commerciales OHADA, Droit fiscal des affaires, Droit du travail, Clinique juridique & Stage.'
+                ],
+                debouches: 'Juriste d’entreprise, Conseiller juridique et fiscal junior, Clerc de notaire ou d’huissier, Préparation aux concours judiciaires.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 410 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f9',
+                titre: 'Droit Public & Relations Internationales',
+                niveau: 'Licence',
+                faculte: 'FDSP',
+                faculteNom: 'Faculté de Droit et de Sciences Politiques (FDSP)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Principal Sanguéra',
+                admission: 'Baccalauréat séries A4, D, C ou G1.',
+                semestres: [
+                    'S1 - S2 : Théorie générale de l’État, Institutions politiques comparées, Relations internationales, Économie politique.',
+                    'S3 - S4 : Droit administratif des biens, Finances publiques, Organisations internationales (ONU, UA, CEDEAO).',
+                    'S5 - S6 : Droit international public, Droit des collectivités territoriales, Droits de l’Homme et Droit humanitaire.'
+                ],
+                debouches: 'Cadre de l’administration publique et des collectivités, Chargé de programmes ONG/Organisations internationales, Diplomatie.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 410 000 FCFA (payable en 3 tranches).'
+            },
+            {
+                id: 'f10',
+                titre: 'Économie Appliquée & Gestion de Projets',
+                niveau: 'Licence',
+                faculte: 'FSE',
+                faculteNom: 'Faculté des Sciences Économiques (FSE)',
+                duree: '3 ans (6 semestres • 180 crédits CECT)',
+                campus: 'Campus Principal Sanguéra',
+                admission: 'Baccalauréat séries C, D, G2, G3 ou A4.',
+                semestres: [
+                    'S1 - S2 : Analyse microéconomique et macroéconomique, Mathématiques pour l’économie, Statistiques descriptives, Comptabilité nationale.',
+                    'S3 - S4 : Économétrie, Économie du développement, Économie internationale, Financement des projets.',
+                    'S5 - S6 : Élaboration et évaluation de projets, Politiques économiques de l’UEMOA, Analyse des données économiques, Stage.'
+                ],
+                debouches: 'Analyste économique, Chargé de suivi-évaluation de projets (ONG, ministères), Chargé d’études statistiques.',
+                frais: 'Inscription : 55 000 FCFA | Scolarité annuelle : 410 000 FCFA (payable en 3 tranches).'
+            }
+        ];
+
+        // --- 2. ACTUALITÉS RÉALISTES DE L'UCAO-UUT ---
+        const actualitesData = [
+            {
+                id: 'n1',
+                titre: 'Rentrée Solennelle 2026-2027 à l’UCAO-UUT : « L’éthique numérique au service du bien commun »',
+                categorie: 'Événements & Conférences',
+                date: '10 Novembre 2026',
+                auteur: 'Présidence & Direction des Études',
+                resume: 'La communauté universitaire s’est réunie au grand amphithéâtre de Sanguéra pour la leçon inaugurale marquant l’ouverture officielle de l’année académique.',
+                contenu: `La cérémonie de rentrée solennelle de l'année académique 2026-2027 s'est tenue ce mardi au Campus Principal de Sanguéra en présence des autorités académiques, du corps professoral, des représentants des parents d'étudiants et des nouveaux inscrits.\n\nLa leçon inaugurale, prononcée sur le thème « L'éthique numérique et l'intelligence artificielle au service du développement humain en Afrique de l'Ouest », a rappelé l'importance de la devise de l'UCAO-UUT : Foi - Science - Action.\n\nÀ cette occasion, les majors de promotion de l'ISIT, de l'ISG, de la FDSP et de la FSE ont reçu leurs tableaux d'honneur ainsi que des bourses d'excellence.`
+            },
+            {
+                id: 'n2',
+                titre: 'Hackathon & Journées Portes Ouvertes du club DevUCAO : Innover pour le campus',
+                categorie: 'Vie Étudiante & Clubs',
+                date: '07 Novembre 2026',
+                auteur: 'Club DevUCAO (ISIT)',
+                resume: 'Le club des développeurs de l’UCAO-UUT organise 48 heures de code non-stop et des ateliers d’initiation ouverts à tous les étudiants.',
+                contenu: `Le club informatique DevUCAO, regroupant les étudiants passionnés de numérique de l'ISIT et des autres facultés, lance l'édition 2026 de son Hackathon annuel sur le campus de Sanguéra.\n\nAu programme de ces deux journées :\n• Compétition de développement d'applications web et mobiles répondant aux besoins des étudiants togolais ;\n• Ateliers pratiques sur Git/GitHub, le développement web moderne et la cybersécurité ;\n• Rencontres et mentorat avec des anciens diplômés de l'UCAO-UUT travaillant dans la tech à Lomé.\n\nLes inscriptions des équipes (3 à 4 étudiants) sont ouvertes auprès du bureau de DevUCAO jusqu'au 22 novembre.`
+            },
+            {
+                id: 'n3',
+                titre: 'Calendrier officiel des Devoirs Surveillés (DST) du Semestre 1',
+                categorie: 'Examens & Scolarité',
+                date: '05 Novembre 2026',
+                auteur: 'Service de la Scolarité',
+                resume: 'Les emplois du temps des évaluations de mi-semestre pour les niveaux L1, L2, L3 et Master sont publiés par faculté et institut.',
+                contenu: `La Direction des Études informe les étudiants de l'ISIT, de l'ISG, de la FDSP et de la FSE que les Devoirs Surveillés (DST) du Semestre 1 se dérouleront du 07 au 12 décembre 2026 sur les campus de Sanguéra et de Nukafu.\n\nRappel des dispositions réglementaires :\n1. L'accès aux salles d'examen est strictement subordonné à la présentation de la carte d'étudiant 2026-2027 et de la quittance de la 1ère tranche de scolarité.\n2. Les candidats doivent se présenter devant leurs salles respectives 20 minutes avant le début des épreuves.`
+            },
+            {
+                id: 'n4',
+                titre: 'Conférence-débat : « Enjeux de l’Intelligence Artificielle et Transformation Digitale au Togo »',
+                categorie: 'Événements & Conférences',
+                date: '01 Novembre 2026',
+                auteur: 'ISIT & Cellule Recherche',
+                resume: 'Des experts du secteur numérique togolais et des enseignants-chercheurs échangeront avec les étudiants sur les nouveaux métiers de la donnée.',
+                contenu: `L'Institut Supérieur d'Ingénierie et de Technologie (ISIT) organise une conférence scientifique ouverte à l'ensemble de la communauté universitaire le jeudi 26 novembre 2026 à 14h30 dans l'Amphithéâtre Saint-Augustin (Sanguéra).\n\nLes échanges porteront sur l'intégration de l'IA dans les entreprises togolaises, la protection des données personnelles et les opportunités de stages pour les étudiants de Licence et Master.`
+            },
+            {
+                id: 'n5',
+                titre: 'Soutenances de mémoires de fin de cycle (Licence 3 & Master 2) — Session de Novembre',
+                categorie: 'Examens & Scolarité',
+                date: '28 Octobre 2026',
+                auteur: 'Direction des Études',
+                resume: 'Publication des jurys et des salles de soutenance pour les impétrants ayant déposé leurs mémoires validés par leurs encadreurs.',
+                contenu: `Les étudiants de Licence 3 et de Master 2 inscrits pour la session de soutenance de novembre 2026 sont priés de consulter les tableaux d'affichage de leurs facultés respectives (ISIT, ISG, FDSP, FSE).\n\nChaque impétrant doit déposer 3 exemplaires physiques reliés de son mémoire ainsi que la version numérique PDF à la Bibliothèque Universitaire au moins 72 heures avant la date de passage devant le jury.`
+            },
+            {
+                id: 'n6',
+                titre: 'Programme de Parrainage L1 et accueil des nouveaux bacheliers par l’AE-UCAO',
+                categorie: 'Administration',
+                date: '22 Octobre 2026',
+                auteur: 'Vie Étudiante & AE-UCAO',
+                resume: 'Chaque étudiant de première année bénéficie désormais d’un parrain ou d’une marraine de L3 pour faciliter son intégration au système LMD.',
+                contenu: `Afin de favoriser la réussite dès la première année universitaire, le Service de la Vie Étudiante en collaboration avec l'Association des Étudiants de l'UCAO-UUT (AE-UCAO) a lancé la cérémonie officielle de parrainage.\n\nLes parrains accompagneront leurs filleuls dans la compréhension des Unités d'Enseignement (UE), l'utilisation de la bibliothèque et la préparation des premiers devoirs sur table.`
+            }
+        ];
+
+        // --- 3. NAVIGATION FLUIDE PAR ONGLETS ---
+        function navigateTo(viewId) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
+            const target = document.getElementById('view-' + viewId);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.nav === viewId) {
+                    btn.className = 'nav-btn px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 bg-ucao-navy text-white shadow-sm';
+                    const icon = btn.querySelector('svg');
+                    if (icon) icon.classList.add('text-ucao-gold');
+                } else {
+                    btn.className = 'nav-btn px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-ucao-navy hover:bg-slate-100 transition-all flex items-center gap-2';
+                }
+            });
+
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                if (btn.dataset.nav === viewId) {
+                    btn.className = 'mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold bg-ucao-navy text-white flex items-center gap-3';
+                } else {
+                    btn.className = 'mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3';
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // --- 4. RECHERCHE GLOBALE EN TEMPS RÉEL (ACCUEIL) ---
+        function handleGlobalSearch(query) {
+            const resultsBox = document.getElementById('global-search-results');
+            const clearBtn = document.getElementById('clear-search-btn');
+            const q = query.trim().toLowerCase();
+
+            if (!q) {
+                resultsBox.classList.add('hidden');
+                clearBtn.classList.add('hidden');
+                return;
+            }
+
+            clearBtn.classList.remove('hidden');
+
+            const matchedFilieres = filieresData.filter(f => 
+                f.titre.toLowerCase().includes(q) || 
+                f.faculte.toLowerCase().includes(q) || 
+                f.niveau.toLowerCase().includes(q) ||
+                f.debouches.toLowerCase().includes(q)
+            );
+
+            const matchedNews = actualitesData.filter(n => 
+                n.titre.toLowerCase().includes(q) || 
+                n.categorie.toLowerCase().includes(q) || 
+                n.resume.toLowerCase().includes(q)
+            );
+
+            if (matchedFilieres.length === 0 && matchedNews.length === 0) {
+                resultsBox.innerHTML = `
+                    <div class="p-6 text-center text-slate-500 text-sm">
+                        Aucun résultat trouvé pour « <span class="font-bold text-ucao-navy">${escapeHtml(query)}</span> ».
+                    </div>
+                `;
+            } else {
+                let html = '';
+
+                if (matchedFilieres.length > 0) {
+                    html += `<div class="bg-slate-50 px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-ucao-navy border-b border-slate-100">Filières & Formations (${matchedFilieres.length})</div>`;
+                    matchedFilieres.forEach(f => {
+                        html += `
+                            <div onclick="openFiliereModal('${f.id}'); clearGlobalSearch();" class="px-4 py-3 hover:bg-ucao-goldLight/60 cursor-pointer border-b border-slate-100 transition flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-ucao-navy text-ucao-gold mr-1.5">${f.faculte} • ${f.niveau}</span>
+                                    <span class="font-bold text-sm text-ucao-navy">${f.titre}</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">${f.campus}</p>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-ucao-navy shrink-0"></i>
+                            </div>
+                        `;
+                    });
+                }
+
+                if (matchedNews.length > 0) {
+                    html += `<div class="bg-slate-50 px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-ucao-navy border-b border-slate-100">Actualités UCAO-UUT (${matchedNews.length})</div>`;
+                    matchedNews.forEach(n => {
+                        html += `
+                            <div onclick="openNewsModal('${n.id}'); clearGlobalSearch();" class="px-4 py-3 hover:bg-ucao-goldLight/60 cursor-pointer border-b border-slate-100 transition flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 mr-1.5">${n.categorie}</span>
+                                    <span class="font-bold text-sm text-ucao-navy">${n.titre}</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">${n.date}</p>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-ucao-navy shrink-0"></i>
+                            </div>
+                        `;
+                    });
+                }
+
+                resultsBox.innerHTML = html;
+                lucide.createIcons();
+            }
+
+            resultsBox.classList.remove('hidden');
+        }
+
+        function clearGlobalSearch() {
+            document.getElementById('global-search-input').value = '';
+            document.getElementById('global-search-results').classList.add('hidden');
+            document.getElementById('clear-search-btn').classList.add('hidden');
+        }
+
+        // --- 5. RENDU ET FILTRAGE DES FILIÈRES ---
+        function renderFilieres(list) {
+            const grid = document.getElementById('filieres-grid');
+            const countLabel = document.getElementById('filieres-count');
+            countLabel.textContent = `Affichage de ${list.length} formation${list.length > 1 ? 's' : ''} accréditée${list.length > 1 ? 's' : ''}`;
+
+            if (list.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bg-white rounded-2xl p-12 text-center border border-slate-200">
+                        <p class="text-slate-600 font-medium">Aucune filière ne correspond aux critères sélectionnés.</p>
+                        <button onclick="resetFiliereFilters()" class="mt-4 px-5 py-2.5 rounded-xl bg-ucao-navy text-white text-xs font-bold">
+                            Afficher toutes les filières UCAO-UUT
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = list.map(f => {
+                const isMaster = f.niveau === 'Master';
+                const levelBadge = isMaster 
+                    ? 'bg-ucao-goldLight text-ucao-navy border-ucao-gold' 
+                    : 'bg-blue-50 text-ucao-navy border-blue-200';
+
+                return `
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-ucao-gold/60 transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-ucao-navy text-ucao-gold">
+                                    ${f.faculte}
+                                </span>
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold border ${levelBadge}">
+                                    ${f.niveau}
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-lg text-ucao-navy leading-snug mb-2">
+                                ${f.titre}
+                            </h3>
+                            <p class="text-xs text-slate-500 mb-3">${f.duree}</p>
+                            <p class="text-xs text-slate-600 flex items-center gap-1.5 mb-4">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-ucao-gold shrink-0"></i>
+                                ${f.campus}
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100">
+                            <button onclick="openFiliereModal('${f.id}')" class="w-full py-2.5 px-4 rounded-xl bg-ucao-navy hover:bg-ucao-blue text-white font-semibold text-xs transition flex items-center justify-center gap-2 shadow-sm">
+                                Voir le programme <i data-lucide="book-open" class="w-4 h-4 text-ucao-gold"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function filterFilieres() {
+            const search = document.getElementById('filiere-search').value.trim().toLowerCase();
+            const level = document.getElementById('filiere-level-filter').value;
+            const faculty = document.getElementById('filiere-faculty-filter').value;
+
+            updateFacultyPills(faculty);
+
+            const filtered = filieresData.filter(f => {
+                const matchSearch = f.titre.toLowerCase().includes(search) || f.debouches.toLowerCase().includes(search) || f.faculte.toLowerCase().includes(search);
+                const matchLevel = (level === 'ALL' || f.niveau === level);
+                const matchFaculty = (faculty === 'ALL' || f.faculte === faculty);
+                return matchSearch && matchLevel && matchFaculty;
+            });
+
+            renderFilieres(filtered);
+        }
+
+        function filterByFaculty(fac) {
+            document.getElementById('filiere-faculty-filter').value = fac;
+            filterFilieres();
+        }
+
+        function updateFacultyPills(activeFac) {
+            document.querySelectorAll('.fac-pill').forEach(btn => {
+                if (btn.dataset.fac === activeFac) {
+                    btn.className = 'fac-pill px-3 py-1.5 rounded-lg text-xs font-bold bg-ucao-navy text-white transition';
+                } else {
+                    btn.className = 'fac-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+                }
+            });
+        }
+
+        function resetFiliereFilters() {
+            document.getElementById('filiere-search').value = '';
+            document.getElementById('filiere-level-filter').value = 'ALL';
+            document.getElementById('filiere-faculty-filter').value = 'ALL';
+            updateFacultyPills('ALL');
+            renderFilieres(filieresData);
+        }
+
+        // --- 6. RENDU ET FILTRAGE DES ACTUALITÉS ---
+        function createNewsCardHtml(article) {
+            return `
+                <article class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-ucao-gold/60 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-ucao-goldLight text-ucao-navy border border-ucao-gold/40">
+                                ${article.categorie}
+                            </span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1 shrink-0">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5 text-ucao-gold"></i> ${article.date}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-lg text-ucao-navy leading-snug mb-3">
+                            ${article.titre}
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                            ${article.resume}
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs font-medium text-slate-400">${article.auteur}</span>
+                        <button onclick="openNewsModal('${article.id}')" class="text-xs font-bold text-ucao-navy hover:text-ucao-gold flex items-center gap-1 transition">
+                            Lire l'article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderNews(list) {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = list.map(createNewsCardHtml).join('');
+            lucide.createIcons();
+        }
+
+        function renderHomeLatestNews() {
+            const homeGrid = document.getElementById('home-latest-news');
+            homeGrid.innerHTML = actualitesData.slice(0, 3).map(createNewsCardHtml).join('');
+            lucide.createIcons();
+        }
+
+        function filterNews(category) {
+            document.querySelectorAll('.news-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === category) {
+                    btn.className = 'news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-ucao-navy text-white transition';
+                } else {
+                    btn.className = 'news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition';
+                }
+            });
+
+            if (category === 'ALL') {
+                renderNews(actualitesData);
+            } else {
+                renderNews(actualitesData.filter(n => n.categorie === category));
+            }
+        }
+
+        // --- 7. MODALES DÉTAILLÉES (PROGRAMME / ARTICLE / DOCUMENT) ---
+        function openFiliereModal(id) {
+            const f = filieresData.find(item => item.id === id);
+            if (!f) return;
+
+            const semestresHtml = f.semestres.map(s => `
+                <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-ucao-gold shrink-0 mt-1"></i>
+                    <span>${s}</span>
+                </li>
+            `).join('');
+
+            document.getElementById('modal-body').innerHTML = `
+                <div class="pr-8">
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                        <span class="px-3 py-1 rounded-lg text-xs font-bold bg-ucao-navy text-ucao-gold">${f.faculte}</span>
+                        <span class="px-3 py-1 rounded-lg text-xs font-bold bg-ucao-goldLight text-ucao-navy border border-ucao-gold/40">${f.niveau} • ${f.duree}</span>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-ucao-navy leading-tight">${f.titre}</h2>
+                    <p class="text-xs font-semibold text-slate-500 mt-1">${f.faculteNom} • ${f.campus}</p>
+                </div>
+
+                <div class="mt-6 space-y-5">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-sm text-ucao-navy mb-1 flex items-center gap-2">
+                            <i data-lucide="user-check" class="w-4 h-4 text-ucao-gold"></i> Conditions d'admission
+                        </h4>
+                        <p class="text-sm text-slate-700 leading-relaxed">${f.admission}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-ucao-navy mb-3 flex items-center gap-2">
+                            <i data-lucide="layers" class="w-4 h-4 text-ucao-gold"></i> Maquette Pédagogique par Semestres
+                        </h4>
+                        <ul class="space-y-2.5">
+                            ${semestresHtml}
+                        </ul>
+                    </div>
+
+                    <div class="bg-ucao-goldLight/60 p-4 rounded-2xl border border-ucao-gold/40">
+                        <h4 class="font-bold text-sm text-ucao-navy mb-1 flex items-center gap-2">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-ucao-navy"></i> Débouchés professionnels
+                        </h4>
+                        <p class="text-sm text-slate-800 leading-relaxed">${f.debouches}</p>
+                    </div>
+
+                    <div class="bg-ucao-navy text-white p-4 rounded-2xl">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-ucao-gold mb-1">Frais & Modalités d'inscription (2026-2027)</h4>
+                        <p class="text-xs sm:text-sm text-slate-200">${f.frais}</p>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="showToast('Téléchargement de la maquette ${f.faculte} lancé'); closeModal();" class="flex-1 py-3 px-4 rounded-xl bg-ucao-navy hover:bg-ucao-blue text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                            <i data-lucide="download" class="w-4 h-4 text-ucao-gold"></i> Télécharger la fiche PDF
+                        </button>
+                        <button onclick="closeModal(); navigateTo('contacts');" class="flex-1 py-3 px-4 rounded-xl border-2 border-ucao-navy hover:bg-slate-50 text-ucao-navy text-xs font-bold flex items-center justify-center gap-2 transition">
+                            <i data-lucide="mail" class="w-4 h-4"></i> Contacter la Scolarité
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function openNewsModal(id) {
+            const n = actualitesData.find(item => item.id === id);
+            if (!n) return;
+
+            const paragraphs = n.contenu.split('\n\n').map(p => 
+                `<p class="text-sm text-slate-700 leading-relaxed whitespace-pre-line">${p}</p>`
+            ).join('');
+
+            document.getElementById('modal-body').innerHTML = `
+                <div class="pr-8">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-ucao-goldLight text-ucao-navy border border-ucao-gold/40">
+                            ${n.categorie}
+                        </span>
+                        <span class="text-xs text-slate-500">${n.date}</span>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-ucao-navy leading-snug">${n.titre}</h2>
+                    <p class="text-xs text-slate-500 mt-2">Source : <span class="font-bold text-ucao-navy">${n.auteur}</span></p>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-slate-100 space-y-4">
+                    ${paragraphs}
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+                    <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-ucao-navy text-white text-xs font-bold hover:bg-ucao-blue transition">
+                        Fermer
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function openDocPreview(title, summary) {
+            document.getElementById('modal-body').innerHTML = `
+                <div class="pr-8">
+                    <span class="inline-block px-3 py-1 rounded-lg text-xs font-bold bg-ucao-navy text-ucao-gold mb-2">Document Officiel UCAO-UUT</span>
+                    <h2 class="font-serif text-2xl font-bold text-ucao-navy">${title}</h2>
+                </div>
+                <div class="mt-5 p-5 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-700 whitespace-pre-line leading-relaxed">
+                    ${summary}
+                </div>
+                <div class="mt-6 flex justify-end gap-3">
+                    <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold text-slate-700">Fermer</button>
+                    <button onclick="showToast('Téléchargement du fichier PDF démarré'); closeModal();" class="px-5 py-2.5 rounded-xl bg-ucao-navy text-white text-xs font-bold flex items-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4 text-ucao-gold"></i> Télécharger le PDF complet
+                    </button>
+                </div>
+            `;
+            document.getElementById('detail-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        document.getElementById('detail-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // --- 8. FAQ & FORMULAIRE AVEC RÉCÉPISSÉ ---
+        function toggleFaq(index) {
+            const content = document.getElementById('faq-content-' + index);
+            const icon = document.getElementById('faq-icon-' + index);
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value.trim();
+            const matricule = document.getElementById('contact-matricule').value.trim() || 'Non renseigné (Candidat / Visiteur)';
+            const service = document.getElementById('contact-service').value;
+            const subject = document.getElementById('contact-subject').value.trim();
+            const now = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+            currentTicketNumber = 'UCAO-' + Math.floor(100000 + Math.random() * 900000);
+
+            document.getElementById('receipt-ticket').textContent = '#' + currentTicketNumber;
+            document.getElementById('receipt-body').innerHTML = `
+                <p><strong>Demandeur :</strong> ${escapeHtml(name)} (Matricule : ${escapeHtml(matricule)})</p>
+                <p><strong>Service destinataire :</strong> ${escapeHtml(service)}</p>
+                <p><strong>Objet :</strong> ${escapeHtml(subject)}</p>
+                <p><strong>Date d'enregistrement :</strong> ${now} • Campus Lomé</p>
+                <p class="text-emerald-800 font-medium pt-1">Votre requête est en cours de traitement. Conservez ce numéro de ticket pour tout suivi au guichet.</p>
+            `;
+
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('contact-receipt').classList.remove('hidden');
+            showToast('Récépissé #' + currentTicketNumber + ' généré avec succès');
+        }
+
+        function copyReceiptTicket() {
+            const tempInput = document.createElement('input');
+            tempInput.value = currentTicketNumber;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Numéro de ticket copié : ' + currentTicketNumber);
+        }
+
+        function resetContactForm() {
+            document.getElementById('contact-form').reset();
+            document.getElementById('contact-receipt').classList.add('hidden');
+            document.getElementById('contact-form').classList.remove('hidden');
+        }
+
+        // --- 9. UTILITAIRES ---
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        window.onload = function() {
+            renderHomeLatestNews();
+            renderFilieres(filieresData);
+            renderNews(actualitesData);
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>

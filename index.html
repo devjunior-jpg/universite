@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Universitaire — Université de Lomé | Campus Numérique</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chargement de la police Inter et Playfair Display pour un rendu académique institutionnel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Chargement des icônes Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            700: '#1e3a5f',
+                            800: '#102a43',
+                            900: '#0a192f',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-navy-800 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Barre supérieure d'alerte / Infos rapides -->
+    <div class="bg-navy-900 text-slate-200 text-xs py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500 text-navy-900 uppercase tracking-wider">
+                    Annonce
+                </span>
+                <span class="truncate">Rentrée Académique 2026-2027 : Les inscriptions pédagogiques en ligne sont ouvertes jusqu'au 30 Novembre.</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-4 text-slate-300">
+                <button onclick="navigateTo('actualites')" class="hover:text-amber-400 transition flex items-center gap-1">
+                    <i data-lucide="bell" class="w-3.5 h-3.5 text-amber-400"></i> Avis importants (3)
+                </button>
+                <span>|</span>
+                <button onclick="navigateTo('contacts')" class="hover:text-amber-400 transition flex items-center gap-1">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i> Urgences Campus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Principale (Header) -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Institutionnel -->
+                <div onclick="navigateTo('accueil')" class="flex items-center gap-3 cursor-pointer group">
+                    <div class="w-11 h-11 rounded-xl bg-navy-800 text-white flex items-center justify-center shadow-md group-hover:bg-navy-700 transition">
+                        <i data-lucide="graduation-cap" class="w-6 h-6 text-amber-400"></i>
+                    </div>
+                    <div>
+                        <span class="block font-serif font-bold text-lg sm:text-xl text-navy-900 leading-tight tracking-tight">
+                            Université de Lomé
+                        </span>
+                        <span class="block text-xs font-medium text-slate-500 tracking-wide uppercase">
+                            Portail Étudiant & Campus
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden lg:flex items-center space-x-1" id="desktop-nav">
+                    <button data-nav="accueil" onclick="navigateTo('accueil')" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-2 bg-navy-800 text-white shadow-sm">
+                        <i data-lucide="home" class="w-4 h-4"></i> Accueil
+                    </button>
+                    <button data-nav="etablissement" onclick="navigateTo('etablissement')" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="landmark" class="w-4 h-4"></i> L'Établissement
+                    </button>
+                    <button data-nav="filieres" onclick="navigateTo('filieres')" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-4 h-4"></i> Filières & Formations
+                    </button>
+                    <button data-nav="actualites" onclick="navigateTo('actualites')" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="newspaper" class="w-4 h-4"></i> Actualités & Infos
+                    </button>
+                    <button data-nav="contacts" onclick="navigateTo('contacts')" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+                        <i data-lucide="users" class="w-4 h-4"></i> Administration & Contacts
+                    </button>
+                </nav>
+
+                <!-- Bouton Menu Mobile -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl text-slate-600 hover:text-navy-900 hover:bg-slate-100 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Déroulant -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <button data-nav="accueil" onclick="navigateTo('accueil'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium bg-navy-800 text-white flex items-center gap-3">
+                <i data-lucide="home" class="w-4 h-4"></i> Accueil
+            </button>
+            <button data-nav="etablissement" onclick="navigateTo('etablissement'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="landmark" class="w-4 h-4"></i> L'Établissement
+            </button>
+            <button data-nav="filieres" onclick="navigateTo('filieres'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="book-open" class="w-4 h-4"></i> Filières & Formations
+            </button>
+            <button data-nav="actualites" onclick="navigateTo('actualites'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="newspaper" class="w-4 h-4"></i> Actualités & Infos
+            </button>
+            <button data-nav="contacts" onclick="navigateTo('contacts'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3">
+                <i data-lucide="users" class="w-4 h-4"></i> Administration & Contacts
+            </button>
+        </div>
+    </header>
+
+    <!-- Zone de Contenu Principal (Vues SPA) -->
+    <main class="flex-grow">
+
+        <!-- =========================================================
+             1. VUE ACCUEIL
+        ========================================================== -->
+        <section id="view-accueil" class="view-section">
+            <!-- Bannière Héroïque -->
+            <div class="relative bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 text-white overflow-hidden">
+                <!-- Motifs décoratifs abstraits -->
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-400 blur-3xl"></div>
+                    <div class="absolute bottom-0 left-10 w-72 h-72 rounded-full bg-blue-400 blur-3xl"></div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-6">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Guichet Unique Numérique Étudiant
+                        </span>
+                        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight mb-6 leading-tight">
+                            Toute l'information de votre campus, <span class="text-amber-400">centralisée et accessible.</span>
+                        </h1>
+                        <p class="text-slate-200 text-base sm:text-lg mb-8 leading-relaxed">
+                            Consultez les offres de formation, suivez les actualités officielles, téléchargez les calendriers académiques et contactez directement vos services administratifs.
+                        </p>
+
+                        <!-- Barre de recherche globale interactive -->
+                        <div class="relative max-w-2xl mx-auto">
+                            <div class="flex items-center bg-white rounded-2xl p-2 shadow-xl border border-slate-200 focus-within:ring-4 focus-within:ring-amber-400/30 transition">
+                                <i data-lucide="search" class="w-5 h-5 text-slate-400 ml-3"></i>
+                                <input 
+                                    type="text" 
+                                    id="global-search-input"
+                                    oninput="handleGlobalSearch(this.value)"
+                                    placeholder="Rechercher une filière (ex: Informatique, Droit) ou une actualité (ex: Bourse, Examens)..." 
+                                    class="w-full px-4 py-2.5 text-slate-800 text-sm sm:text-base focus:outline-none bg-transparent"
+                                >
+                                <button onclick="clearGlobalSearch()" id="clear-search-btn" class="hidden px-3 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-800">
+                                    Effacer
+                                </button>
+                            </div>
+
+                            <!-- Résultats instantanés de la recherche globale -->
+                            <div id="global-search-results" class="hidden absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 text-left overflow-hidden z-30 max-h-96 overflow-y-auto">
+                                <!-- Injecté dynamiquement par JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accès Directs Rapides -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 max-w-5xl mx-auto">
+                        <button onclick="navigateTo('filieres')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-left transition group">
+                            <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-semibold text-white text-sm sm:text-base">Catalogue des Filières</h3>
+                            <p class="text-xs text-slate-300 mt-1">Licence, Master & Doctorat</p>
+                        </button>
+
+                        <button onclick="navigateTo('etablissement')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-left transition group">
+                            <div class="w-10 h-10 rounded-xl bg-blue-400/20 text-blue-300 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                                <i data-lucide="calendar" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-semibold text-white text-sm sm:text-base">Calendrier Académique</h3>
+                            <p class="text-xs text-slate-300 mt-1">Dates clés & examens</p>
+                        </button>
+
+                        <button onclick="navigateTo('actualites')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-left transition group">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-400/20 text-emerald-300 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                                <i data-lucide="megaphone" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-semibold text-white text-sm sm:text-base">Avis & Bourses</h3>
+                            <p class="text-xs text-slate-300 mt-1">Notes officielles de la scolarité</p>
+                        </button>
+
+                        <button onclick="navigateTo('contacts')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-left transition group">
+                            <div class="w-10 h-10 rounded-xl bg-rose-400/20 text-rose-300 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                                <i data-lucide="headphones" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-semibold text-white text-sm sm:text-base">Contacter un Service</h3>
+                            <p class="text-xs text-slate-300 mt-1">Scolarité, CROUS, FAQ</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chiffres Clés de l'Établissement -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+                <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 sm:p-8 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="p-2">
+                        <div class="text-3xl sm:text-4xl font-bold text-navy-900 font-serif">48 500+</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Étudiants inscrits</div>
+                    </div>
+                    <div class="p-2 lg:border-l border-slate-100">
+                        <div class="text-3xl sm:text-4xl font-bold text-amber-600 font-serif">85+</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Filières accréditées LMD</div>
+                    </div>
+                    <div class="p-2 lg:border-l border-slate-100">
+                        <div class="text-3xl sm:text-4xl font-bold text-navy-900 font-serif">89%</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Taux d'insertion professionnelle</div>
+                    </div>
+                    <div class="p-2 lg:border-l border-slate-100">
+                        <div class="text-3xl sm:text-4xl font-bold text-amber-600 font-serif">14</div>
+                        <div class="text-xs sm:text-sm font-medium text-slate-500 mt-1">Facultés, Écoles & Instituts</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dernières Actualités (Aperçu Accueil) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-600">À la une sur le campus</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 mt-1">Dernières Actualités & Annonces</h2>
+                    </div>
+                    <button onclick="navigateTo('actualites')" class="inline-flex items-center gap-2 text-sm font-semibold text-navy-800 hover:text-amber-600 transition">
+                        Voir toutes les actualités <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <div id="home-latest-news" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Rempli dynamiquement par JS avec les 3 dernières actualités -->
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             2. VUE L'ÉTABLISSEMENT
+        ========================================================== -->
+        <section id="view-etablissement" class="view-section hidden">
+            <!-- En-tête de section -->
+            <div class="bg-navy-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Présentation Institutionnelle</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">L'Établissement & Vie de Campus</h1>
+                    <p class="text-slate-300 mt-3 max-w-2xl text-sm sm:text-base">
+                        Découvrez l'histoire, les valeurs d'excellence académique, les infrastructures modernes et les documents officiels régissant notre université.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+                <!-- Mot du Président / Recteur -->
+                <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-4">
+                        <div class="relative rounded-2xl overflow-hidden bg-navy-800 aspect-[4/3] lg:aspect-square shadow-md">
+                            <img 
+                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" 
+                                onerror="this.src='https://placehold.co/600x600/102a43/ffffff?text=Pr.+K.+Mensah'"
+                                alt="Portrait du Président de l'Université" 
+                                class="w-full h-full object-cover"
+                            >
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-900 via-navy-900/80 to-transparent p-4 text-white">
+                                <p class="font-serif font-bold text-lg">Pr. Koffi Mensah</p>
+                                <p class="text-xs text-amber-300">Président de l'Université</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-50 text-navy-800 text-xs font-semibold">
+                            <i data-lucide="quote" class="w-3.5 h-3.5 text-amber-600"></i> Mot de la Présidence
+                        </div>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900">
+                            « Bâtir ensemble l'excellence scientifique et citoyenne de demain »
+                        </h2>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Chères étudiantes, chers étudiants, bienvenue sur le portail numérique de votre université. Notre mission première est de vous offrir un environnement d'apprentissage stimulant, ouvert sur l'innovation et parfaitement aligné avec les enjeux socio-économiques contemporains.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Fondée en 1970, notre institution n'a cessé de se moderniser pour devenir un pôle de référence en Afrique de l'Ouest. Grâce à ce portail centralisé, nous facilitons vos démarches quotidiennes afin que vous puissiez vous consacrer pleinement à votre réussite académique.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-6 border-t border-slate-100 text-sm">
+                            <div>
+                                <span class="font-bold text-navy-900 block">Excellence</span>
+                                <span class="text-slate-500 text-xs">Standards internationaux LMD</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-navy-900 block">Innovation</span>
+                                <span class="text-slate-500 text-xs">Transformation numérique & recherche</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-navy-900 block">Inclusion</span>
+                                <span class="text-slate-500 text-xs">Accompagnement social & bourses</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructures du Campus -->
+                <div>
+                    <div class="mb-8">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-600">Vie Étudiante & Recherche</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 mt-1">Infrastructures du Campus</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Carte Infrastructure 1 -->
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition group">
+                            <div class="h-48 overflow-hidden relative">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80" 
+                                    onerror="this.src='https://placehold.co/600x400/1e3a5f/ffffff?text=Bibliotheque+Centrale'"
+                                    alt="Bibliothèque Centrale" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                                >
+                                <span class="absolute top-3 left-3 bg-navy-900/90 text-white text-xs font-medium px-3 py-1 rounded-full">
+                                    Savoir & Documentation
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-bold text-lg text-navy-900 mb-2">Bibliothèque Universitaire Centrale</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Plus de 120 000 ouvrages physiques, accès illimité aux revues scientifiques numériques, salles de travail collaboratif et Wi-Fi haut débit.
+                                </p>
+                                <div class="text-xs text-slate-500 flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-4 h-4 text-amber-600"></i> Lun - Sam : 07h30 – 21h00
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carte Infrastructure 2 -->
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition group">
+                            <div class="h-48 overflow-hidden relative">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" 
+                                    onerror="this.src='https://placehold.co/600x400/1e3a5f/ffffff?text=Laboratoires+Recherche'"
+                                    alt="Laboratoires de Recherche" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                                >
+                                <span class="absolute top-3 left-3 bg-navy-900/90 text-white text-xs font-medium px-3 py-1 rounded-full">
+                                    Sciences & Technologie
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-bold text-lg text-navy-900 mb-2">Pôle des Laboratoires & FabLab</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Équipements de pointe en biotechnologie, génie civil, intelligence artificielle et énergies renouvelables ouverts aux chercheurs et étudiants.
+                                </p>
+                                <div class="text-xs text-slate-500 flex items-center gap-2">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-amber-600"></i> Campus Nord — Bâtiment Sciences
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carte Infrastructure 3 -->
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition group">
+                            <div class="h-48 overflow-hidden relative">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80" 
+                                    onerror="this.src='https://placehold.co/600x400/1e3a5f/ffffff?text=Residences+Campus'"
+                                    alt="Résidences Universitaires" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                                >
+                                <span class="absolute top-3 left-3 bg-navy-900/90 text-white text-xs font-medium px-3 py-1 rounded-full">
+                                    Vie Étudiante
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-bold text-lg text-navy-900 mb-2">Résidences, Restaurants & Complexe Sportif</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    3 restaurants universitaires à tarifs subventionnés, cités universitaires rénovées, centre médico-social et stades omnisports.
+                                </p>
+                                <div class="text-xs text-slate-500 flex items-center gap-2">
+                                    <i data-lucide="heart-pulse" class="w-4 h-4 text-amber-600"></i> Infirmerie ouverte 24h/24
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents Officiels Téléchargeables -->
+                <div class="bg-navy-50 rounded-3xl p-6 sm:p-10 border border-navy-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                        <div>
+                            <h2 class="font-serif text-2xl font-bold text-navy-900">Documents Officiels & Réglementation</h2>
+                            <p class="text-slate-600 text-sm mt-1">Téléchargez les textes de référence et le calendrier officiel de l'année universitaire 2026-2027.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
+                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy-900 text-sm">Calendrier Académique 2026-2027</h4>
+                                    <span class="text-xs text-slate-400">PDF • 1.4 Mo • Semestres 1 & 2</span>
+                                </div>
+                            </div>
+                            <button onclick="simulateDownload('Calendrier_Academique_2026_2027.pdf')" class="p-2.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-white transition shrink-0" title="Télécharger">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy-900 text-sm">Règlement Intérieur du Campus</h4>
+                                    <span class="text-xs text-slate-400">PDF • 2.1 Mo • Charte de l'étudiant</span>
+                                </div>
+                            </div>
+                            <button onclick="simulateDownload('Reglement_Interieur_Universite.pdf')" class="p-2.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-white transition shrink-0" title="Télécharger">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                                    <i data-lucide="map" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy-900 text-sm">Plan Détaillé des Amphithéâtres</h4>
+                                    <span class="text-xs text-slate-400">PDF • 3.8 Mo • Campus Nord & Sud</span>
+                                </div>
+                            </div>
+                            <button onclick="simulateDownload('Plan_Campus_Amphitheatres.pdf')" class="p-2.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-white transition shrink-0" title="Télécharger">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             3. VUE FILIÈRES & FORMATIONS
+        ========================================================== -->
+        <section id="view-filieres" class="view-section hidden">
+            <div class="bg-navy-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Offre de Formation LMD</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">Filières & Parcours Académiques</h1>
+                    <p class="text-slate-300 mt-3 max-w-2xl text-sm sm:text-base">
+                        Explorez nos parcours de Licence, Master et Doctorat. Filtrez par domaine d'études ou niveau pour consulter les conditions d'admission, les programmes et les débouchés.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <!-- Barre de filtres -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 mb-8 flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+                    <!-- Recherche par mot-clé -->
+                    <div class="relative flex-grow max-w-md">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
+                        <input 
+                            type="text" 
+                            id="filiere-search"
+                            oninput="filterFilieres()"
+                            placeholder="Rechercher un intitulé de formation..." 
+                            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-800"
+                        >
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <!-- Filtre Niveau -->
+                        <select id="filiere-level-filter" onchange="filterFilieres()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 font-medium text-slate-700 focus:outline-none focus:border-navy-800">
+                            <option value="ALL">Tous les niveaux (LMD)</option>
+                            <option value="Licence">Licence (Bac +3)</option>
+                            <option value="Master">Master (Bac +5)</option>
+                            <option value="Doctorat">Doctorat (Bac +8)</option>
+                        </select>
+
+                        <!-- Filtre Domaine -->
+                        <select id="filiere-domain-filter" onchange="filterFilieres()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 font-medium text-slate-700 focus:outline-none focus:border-navy-800">
+                            <option value="ALL">Tous les domaines</option>
+                            <option value="Informatique & Numérique">Informatique & Numérique</option>
+                            <option value="Sciences Économiques & Gestion">Sciences Économiques & Gestion</option>
+                            <option value="Droit & Sciences Politiques">Droit & Sciences Politiques</option>
+                            <option value="Sciences de la Santé">Sciences de la Santé</option>
+                            <option value="Génie & Technologie">Génie & Technologie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Compteur de résultats -->
+                <div class="mb-6 flex justify-between items-center text-sm text-slate-500">
+                    <span id="filieres-count">Affichage de 8 formations</span>
+                    <button onclick="resetFiliereFilters()" class="text-navy-800 hover:text-amber-600 font-medium text-xs underline">
+                        Réinitialiser les filtres
+                    </button>
+                </div>
+
+                <!-- Grille des Filières -->
+                <div id="filieres-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Injecté dynamiquement par JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             4. VUE ACTUALITÉS & INFOS
+        ========================================================== -->
+        <section id="view-actualites" class="view-section hidden">
+            <div class="bg-navy-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Vie du Campus & Annonces Officielles</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">Actualités & Informations Étudiantes</h1>
+                    <p class="text-slate-300 mt-3 max-w-2xl text-sm sm:text-base">
+                        Restez informé en temps réel des avis de la scolarité, des campagnes de bourses, des calendriers d'examens et des événements scientifiques.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+                <!-- Espace Avis Importants (En évidence) -->
+                <div class="bg-amber-50 border border-amber-200 rounded-3xl p-6 sm:p-8">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-sm">
+                            <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-serif text-xl font-bold text-navy-900">Avis Importants & Urgences Scolarité</h2>
+                            <p class="text-xs text-amber-800">Notes de service à consulter impérativement cette semaine</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-2xl border border-amber-200/80 shadow-sm">
+                            <span class="inline-block px-2.5 py-0.5 rounded-md bg-rose-100 text-rose-700 text-[11px] font-bold mb-2">Date Limite</span>
+                            <h3 class="font-bold text-navy-900 text-sm mb-1">Clôture des inscriptions pédagogiques</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Le choix des Unités d'Enseignement (UE) du Semestre 1 prend fin le 30 novembre à 23h59.</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-2xl border border-amber-200/80 shadow-sm">
+                            <span class="inline-block px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[11px] font-bold mb-2">Emploi du temps</span>
+                            <h3 class="font-bold text-navy-900 text-sm mb-1">Délocalisation des cours — Amphi 600</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">En raison de travaux de maintenance sonore, les cours de Droit L2 sont transférés à l'Amphi B.</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-2xl border border-amber-200/80 shadow-sm">
+                            <span class="inline-block px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800 text-[11px] font-bold mb-2">Bourses</span>
+                            <h3 class="font-bold text-navy-900 text-sm mb-1">Dépôt des dossiers d'allocation d'études</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Les nouveaux bacheliers doivent déposer leur dossier physique au guichet du CROUS avant vendredi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtres par catégorie d'actualités -->
+                <div>
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                        <div class="flex flex-wrap gap-2" id="news-category-filters">
+                            <button onclick="filterNews('ALL')" data-cat="ALL" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-navy-800 text-white transition">
+                                Toutes les actualités
+                            </button>
+                            <button onclick="filterNews('Examens')" data-cat="Examens" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">
+                                Examens
+                            </button>
+                            <button onclick="filterNews('Bourses')" data-cat="Bourses" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">
+                                Bourses & Aides
+                            </button>
+                            <button onclick="filterNews('Événements')" data-cat="Événements" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">
+                                Événements
+                            </button>
+                            <button onclick="filterNews('Administration')" data-cat="Administration" class="news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">
+                                Administration
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Liste des articles -->
+                    <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Injecté dynamiquement par JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             5. VUE ADMINISTRATION & CONTACTS
+        ========================================================== -->
+        <section id="view-contacts" class="view-section hidden">
+            <div class="bg-navy-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Assistance & Orientation</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold mt-2">Administration & Contacts</h1>
+                    <p class="text-slate-300 mt-3 max-w-2xl text-sm sm:text-base">
+                        Trouvez rapidement le bon interlocuteur, consultez les horaires d'ouverture des guichets ou envoyez directement votre demande en ligne.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+                <!-- Annuaire des Services -->
+                <div>
+                    <h2 class="font-serif text-2xl font-bold text-navy-900 mb-6">Annuaire des Services Administratifs</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Service 1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start justify-between gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-800 flex items-center justify-center">
+                                            <i data-lucide="file-check" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-lg text-navy-900">Direction des Affaires Académiques (Scolarité)</h3>
+                                            <span class="text-xs text-amber-600 font-semibold">Inscriptions, Relevés de notes, Diplômes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-4">
+                                    Gestion des dossiers d'inscription, délivrance des cartes d'étudiant, attestations de réussite et authentification des diplômes.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-4 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-navy-700"></i> Bâtiment Administratif Central, Rez-de-chaussée (Guichets 1 à 6)</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-navy-700"></i> Lundi au Vendredi : 08h00 – 12h30 / 14h30 – 17h00</div>
+                                <div class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-navy-700"></i> scolarite@univ-lome.tg • +228 22 25 50 94</div>
+                            </div>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start justify-between gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                                            <i data-lucide="coins" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-lg text-navy-900">Centre Régional des Œuvres Universitaires (CROUS)</h3>
+                                            <span class="text-xs text-amber-600 font-semibold">Bourses, Logement & Restauration</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-4">
+                                    Accompagnement social des étudiants, attribution des chambres en cité universitaire, gestion des bourses nationales et aides d'urgence.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-4 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-navy-700"></i> Campus Sud, Pavillon des Œuvres Sociales</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-navy-700"></i> Lundi au Vendredi : 07h30 – 16h30</div>
+                                <div class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-navy-700"></i> bourses.crous@univ-lome.tg • +228 22 25 81 12</div>
+                            </div>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start justify-between gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+                                            <i data-lucide="globe" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-lg text-navy-900">Direction des Relations Internationales</h3>
+                                            <span class="text-xs text-amber-600 font-semibold">Mobilité, Échanges & Étudiants Étrangers</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-4">
+                                    Accueil des étudiants internationaux, programmes d'échange (Erasmus+, CAMES, AUF), conventions de partenariat et doubles diplômes.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-4 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-navy-700"></i> Bloc de la Présidence, 2ème étage, Porte 204</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-navy-700"></i> Lundi au Vendredi : 08h30 – 16h00</div>
+                                <div class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-navy-700"></i> cooperation@univ-lome.tg • +228 22 21 35 00</div>
+                            </div>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start justify-between gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                                            <i data-lucide="laptop" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-lg text-navy-900">Centre Informatique & Campus Numérique</h3>
+                                            <span class="text-xs text-amber-600 font-semibold">Support ENT, Wi-Fi & Messagerie Étudiante</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-4">
+                                    Assistance technique pour l'activation des comptes institutionnels (@etu.univ-lome.tg), accès aux plateformes de cours en ligne (Moodle) et réseau Wi-Fi.
+                                </p>
+                            </div>
+                            <div class="space-y-2 pt-4 border-t border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-navy-700"></i> Centre de Ressources Informatiques (CRI)</div>
+                                <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-navy-700"></i> Lundi au Samedi : 08h00 – 18h00</div>
+                                <div class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-navy-700"></i> support.num@univ-lome.tg • +228 22 25 99 00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grille FAQ + Formulaire de Contact -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- Foire Aux Questions (Accordéon) -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <h2 class="font-serif text-2xl font-bold text-navy-900">Foire Aux Questions (FAQ)</h2>
+                        <p class="text-sm text-slate-600 mb-4">Retrouvez les réponses aux démarches administratives les plus fréquentes.</p>
+
+                        <div class="space-y-3" id="faq-container">
+                            <!-- Item FAQ 1 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(1)" class="w-full px-5 py-4 text-left font-semibold text-sm text-navy-900 flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Comment obtenir une attestation d'inscription ou un relevé de notes ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-1" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                                </button>
+                                <div id="faq-content-1" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Connectez-vous à votre Espace Numérique de Travail (ENT) avec votre numéro matricule, rubrique « Mes Documents ». Vous pouvez télécharger une attestation provisoire avec QR Code immédiatement, ou commander un original signé à retirer sous 48h à la Scolarité Centrale.
+                                </div>
+                            </div>
+
+                            <!-- Item FAQ 2 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(2)" class="w-full px-5 py-4 text-left font-semibold text-sm text-navy-900 flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>J'ai perdu ma carte d'étudiant, quelle est la procédure de duplicata ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-2" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                                </button>
+                                <div id="faq-content-2" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Vous devez d'abord faire une déclaration de perte au commissariat, puis vous présenter au Guichet 3 de la Scolarité muni de la déclaration, de votre fiche d'inscription de l'année en cours et d'une quittance de frais de duplicata (2 000 FCFA).
+                                </div>
+                            </div>
+
+                            <!-- Item FAQ 3 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(3)" class="w-full px-5 py-4 text-left font-semibold text-sm text-navy-900 flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Quelles sont les conditions pour bénéficier d'une bourse ou d'un logement ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-3" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                                </button>
+                                <div id="faq-content-3" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Les bourses sont attribuées sur critères académiques (moyenne au Baccalauréat ou validation des crédits LMD sans redoublement) et sociaux. Les demandes de chambre universitaire s'effectuent auprès du CROUS durant les deux premières semaines de la rentrée.
+                                </div>
+                            </div>
+
+                            <!-- Item FAQ 4 -->
+                            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                                <button onclick="toggleFaq(4)" class="w-full px-5 py-4 text-left font-semibold text-sm text-navy-900 flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Comment activer mon adresse email universitaire et le Wi-Fi du campus ?</span>
+                                    <i data-lucide="chevron-down" id="faq-icon-4" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                                </button>
+                                <div id="faq-content-4" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Votre identifiant est généré automatiquement 24h après le paiement de vos droits d'inscription. Rendez-vous au Centre Informatique (CRI) ou utilisez le formulaire ci-contre en choisissant « Service Informatique » en cas de blocage.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de Contact Interactif -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                            <h2 class="font-serif text-2xl font-bold text-navy-900">Contacter un Service</h2>
+                            <p class="text-sm text-slate-600 mt-1 mb-6">Votre message sera transmis directement au guichet concerné. Réponse sous 24 à 48h ouvrées.</p>
+
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nom & Prénoms *</label>
+                                        <input type="text" required placeholder="Ex: Ama Mensah" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-800">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">N° Carte Étudiant (optionnel)</label>
+                                        <input type="text" placeholder="Ex: 2026-UL-45892" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-800">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Email de contact *</label>
+                                        <input type="email" required placeholder="etudiant@exemple.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-800">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Service destinataire *</label>
+                                        <select id="contact-service" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:border-navy-800">
+                                            <option value="Scolarité Centrale">Scolarité Centrale</option>
+                                            <option value="Bourses & CROUS">Bourses & Œuvres Universitaires (CROUS)</option>
+                                            <option value="Relations Internationales">Relations Internationales</option>
+                                            <option value="Service Informatique">Service Informatique & Support ENT</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1.5">Objet de la demande *</label>
+                                    <input type="text" required placeholder="Ex: Demande d'attestation de réussite L3" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-800">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1.5">Message détaillé *</label>
+                                    <textarea rows="4" required placeholder="Précisez votre filière, votre niveau et l'objet de votre requête..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-800"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3 px-6 rounded-xl bg-navy-800 hover:bg-navy-700 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2">
+                                    <i data-lucide="send" class="w-4 h-4"></i> Envoyer ma demande
+                                </button>
+                            </form>
+
+                            <!-- Message de confirmation masqué par défaut -->
+                            <div id="contact-confirmation" class="hidden mt-4 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <h4 class="font-bold text-sm">Demande transmise avec succès !</h4>
+                                        <p class="text-xs text-emerald-800 mt-1" id="confirmation-details">
+                                            Votre ticket a été enregistré et transmis au service concerné.
+                                        </p>
+                                        <button onclick="resetContactForm()" class="mt-3 text-xs font-semibold underline text-emerald-700 hover:text-emerald-900">
+                                            Envoyer un autre message
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         MODALE DÉTAILS FILIÈRE / ARTICLE
+    ========================================================== -->
+    <div id="detail-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-navy-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 relative animate-fade-in">
+            <!-- Bouton fermer -->
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="modal-body" class="p-6 sm:p-8">
+                <!-- Contenu injecté par JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast (Remplace alert()) -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-navy-900 text-white px-5 py-3.5 rounded-2xl shadow-xl border border-navy-700 flex items-center gap-3 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-amber-400 shrink-0"></i>
+            <span id="toast-message">Action effectuée</span>
+        </div>
+    </div>
+
+    <!-- Pied de Page (Footer) -->
+    <footer class="bg-navy-900 text-slate-300 border-t border-navy-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2.5 text-white mb-4">
+                        <i data-lucide="graduation-cap" class="w-6 h-6 text-amber-400"></i>
+                        <span class="font-serif font-bold text-lg">Université de Lomé</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Institution publique d'enseignement supérieur et de recherche. Guichet unique d'information académique, pédagogique et administrative pour la communauté étudiante.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Navigation Rapide</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateTo('accueil')" class="hover:text-amber-400 transition">Accueil du portail</button></li>
+                        <li><button onclick="navigateTo('etablissement')" class="hover:text-amber-400 transition">Présentation & Campus</button></li>
+                        <li><button onclick="navigateTo('filieres')" class="hover:text-amber-400 transition">Catalogue des filières</button></li>
+                        <li><button onclick="navigateTo('actualites')" class="hover:text-amber-400 transition">Actualités & Avis officiels</button></li>
+                        <li><button onclick="navigateTo('contacts')" class="hover:text-amber-400 transition">Annuaire & Contacts</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Services Étudiants</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateTo('contacts')" class="hover:text-amber-400 transition">Scolarité Centrale</button></li>
+                        <li><button onclick="navigateTo('contacts')" class="hover:text-amber-400 transition">Bourses & Logement (CROUS)</button></li>
+                        <li><button onclick="navigateTo('etablissement')" class="hover:text-amber-400 transition">Bibliothèque Universitaire</button></li>
+                        <li><button onclick="navigateTo('contacts')" class="hover:text-amber-400 transition">Assistance Numérique (ENT)</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Coordonnées</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                            <span>01 BP 1515, Boulevard Eyadéma, Lomé — Togo</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-amber-400 shrink-0"></i>
+                            <span>+228 22 21 35 00</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-amber-400 shrink-0"></i>
+                            <span>contact@univ-lome.tg</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-navy-800 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>© 2026 Université de Lomé — Portail d'Information Universitaire. Tous droits réservés.</p>
+                <div class="flex space-x-4">
+                    <span>Mentions légales</span>
+                    <span>•</span>
+                    <span>Charte informatique</span>
+                    <span>•</span>
+                    <span>Accessibilité</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         LOGIQUE JAVASCRIPT & DONNÉES STRUCTURÉES
+    ========================================================== -->
+    <script>
+        // --- 1. BASE DE DONNÉES SIMULÉE (FILIÈRES) ---
+        const filieresData = [
+            {
+                id: 'f1',
+                titre: 'Licence Professionnelle en Génie Logiciel & Systèmes d’Information',
+                niveau: 'Licence',
+                domaine: 'Informatique & Numérique',
+                duree: '3 ans (6 semestres)',
+                faculte: 'École Polytechnique / Centre Informatique',
+                admission: 'Baccalauréat séries C, D, E ou F2. Sélection sur étude de dossier et test de logique mathématique.',
+                programme: [
+                    'Semestre 1-2 : Algorithmique avancée, Architecture des ordinateurs, Mathématiques discrètes, Programmation C/Python.',
+                    'Semestre 3-4 : Bases de données relationnelles (SQL), Développement Web Fullstack, Réseaux & Systèmes Linux.',
+                    'Semestre 5-6 : Génie logiciel, Sécurité applicative, Développement Mobile, Projet tuteuré et Stage en entreprise (3 mois).'
+                ],
+                debouches: 'Développeur Fullstack, Analyste programmeur, Administrateur de bases de données, Chef de projet junior.'
+            },
+            {
+                id: 'f2',
+                titre: 'Master Recherche & Pro en Intelligence Artificielle et Science des Données',
+                niveau: 'Master',
+                domaine: 'Informatique & Numérique',
+                duree: '2 ans (4 semestres)',
+                faculte: 'Faculté des Sciences (FDS)',
+                admission: 'Licence en Informatique, Mathématiques appliquées ou diplôme d’ingénieur équivalent.',
+                programme: [
+                    'Semestre 1 : Machine Learning, Statistiques avancées, Big Data & Cloud Computing.',
+                    'Semestre 2 : Deep Learning, Traitement du Langage Naturel (NLP), Vision par ordinateur.',
+                    'Semestre 3-4 : Éthique de l’IA, Projet de recherche appliquée et Mémoire de fin d’études.'
+                ],
+                debouches: 'Data Scientist, Ingénieur IA / Machine Learning, Consultant Big Data, Doctorant en informatique.'
+            },
+            {
+                id: 'f3',
+                titre: 'Licence Fondamentale en Sciences Économiques et Gestion des Entreprises',
+                niveau: 'Licence',
+                domaine: 'Sciences Économiques & Gestion',
+                duree: '3 ans (6 semestres)',
+                faculte: 'Faculté des Sciences Économiques et de Gestion (FASEG)',
+                admission: 'Baccalauréat toutes séries (priorité séries G2, G3, C, D, A4 avec bon niveau en mathématiques).',
+                programme: [
+                    'Semestre 1-2 : Microéconomie, Macroéconomie, Comptabilité générale, Introduction au droit des affaires.',
+                    'Semestre 3-4 : Analyse financière, Marketing fondamental, Statistiques descriptives, Gestion des ressources humaines.',
+                    'Semestre 5-6 : Contrôle de gestion, Économie internationale, Entrepreneuriat et Stratégie d’entreprise.'
+                ],
+                debouches: 'Contrôleur de gestion, Chargé d’études économiques, Analyste financier junior, Gestionnaire administratif.'
+            },
+            {
+                id: 'f4',
+                titre: 'Master en Finance, Banque et Ingénierie Financière',
+                niveau: 'Master',
+                domaine: 'Sciences Économiques & Gestion',
+                duree: '2 ans (4 semestres)',
+                faculte: 'Faculté des Sciences Économiques et de Gestion (FASEG)',
+                admission: 'Licence en Économie, Gestion, Comptabilité ou Finance sur dossier et entretien.',
+                programme: [
+                    'Semestre 1-2 : Marchés financiers, Gestion de portefeuille, Audit financier, Fiscalité des entreprises.',
+                    'Semestre 3-4 : Gestion des risques bancaires, Finance internationale, Stage professionnel de 6 mois.'
+                ],
+                debouches: 'Analyste crédit, Auditeur financier, Gestionnaire de patrimoine, Cadre bancaire.'
+            },
+            {
+                id: 'f5',
+                titre: 'Licence en Droit Public et Sciences Politiques',
+                niveau: 'Licence',
+                domaine: 'Droit & Sciences Politiques',
+                duree: '3 ans (6 semestres)',
+                faculte: 'Faculté de Droit (FDD)',
+                admission: 'Baccalauréat séries A4, D, C ou G1. Maîtrise de l’expression écrite et orale.',
+                programme: [
+                    'Semestre 1-2 : Droit constitutionnel, Introduction générale au droit, Histoire des institutions politiques.',
+                    'Semestre 3-4 : Droit administratif général, Finances publiques, Relations internationales.',
+                    'Semestre 5-6 : Droit international public, Libertés fondamentales, Droit des collectivités territoriales.'
+                ],
+                debouches: 'Juriste d’administration, Cadre de la fonction publique, Assistant parlementaire, Préparation aux concours (Magistrature, ENA).'
+            },
+            {
+                id: 'f6',
+                titre: 'Doctorat d’État en Médecine Générale',
+                niveau: 'Doctorat',
+                domaine: 'Sciences de la Santé',
+                duree: '7 ans (14 semestres)',
+                faculte: 'Faculté des Sciences de la Santé (FSS)',
+                admission: 'Baccalauréat série C ou D avec mention. Concours d’entrée sélectif en première année.',
+                programme: [
+                    'Cycle 1 (Années 1-2) : Anatomie, Physiologie, Biochimie, Histologie, Santé publique.',
+                    'Cycle 2 (Années 3-5) : Sémiologie médicale et chirurgicale, Pathologies spécialisées, Stages hospitaliers.',
+                    'Cycle 3 (Années 6-7) : Internat clinique, Urgences, Médecine communautaire et Thèse d’exercice.'
+                ],
+                debouches: 'Médecin généraliste hospitalier ou libéral, Médecin de santé publique, Spécialisation médicale (DES).'
+            },
+            {
+                id: 'f7',
+                titre: 'Licence en Génie Civil et Infrastructures Durables',
+                niveau: 'Licence',
+                domaine: 'Génie & Technologie',
+                duree: '3 ans (6 semestres)',
+                faculte: 'École Polytechnique de Lomé (EPL)',
+                admission: 'Baccalauréat séries C, D, E ou F4. Sélection sur dossier.',
+                programme: [
+                    'Semestre 1-2 : Mécanique du solide, Dessin technique (CAO/DAO), Physique appliquée.',
+                    'Semestre 3-4 : Résistance des matériaux (RDM), Géotechnique, Matériaux de construction, Topographie.',
+                    'Semestre 5-6 : Béton armé, Hydraulique urbaine, Gestion de chantier et Projet de fin de cycle.'
+                ],
+                debouches: 'Conducteur de travaux, Technicien supérieur bureau d’études BTP, Contrôleur qualité construction.'
+            },
+            {
+                id: 'f8',
+                titre: 'Master en Énergies Renouvelables et Efficacité Énergétique',
+                niveau: 'Master',
+                domaine: 'Génie & Technologie',
+                duree: '2 ans (4 semestres)',
+                faculte: 'École Polytechnique de Lomé (EPL)',
+                admission: 'Licence en Physique, Génie Électrique, Génie Mécanique ou Énergétique.',
+                programme: [
+                    'Semestre 1-2 : Solaire photovoltaïque et thermique, Biomasse, Réseaux électriques intelligents (Smart Grids).',
+                    'Semestre 3-4 : Audit énergétique des bâtiments, Stockage de l’énergie, Stage industriel ou laboratoire.'
+                ],
+                debouches: 'Ingénieur projets solaires, Auditeur énergétique, Consultant transition écologique.'
+            }
+        ];
+
+        // --- 2. BASE DE DONNÉES SIMULÉE (ACTUALITÉS) ---
+        const actualitesData = [
+            {
+                id: 'n1',
+                titre: 'Ouverture de la campagne nationale des bourses et aides sociales 2026-2027',
+                categorie: 'Bourses',
+                date: '12 Novembre 2026',
+                auteur: 'Direction du CROUS',
+                resume: 'Les étudiants régulièrement inscrits en Licence et Master peuvent soumettre leur dossier numérique de demande de bourse ou de renouvellement.',
+                contenu: `La Direction du Centre Régional des Œuvres Universitaires (CROUS) informe l'ensemble de la communauté étudiante que la plateforme de dépôt des demandes de bourses et d'allocations de secours est officiellement ouverte.\n\nPièces à fournir au format numérique :\n• Attestation d'inscription de l'année académique 2026-2027 ;\n• Relevés de notes de l'année précédente (ou relevé du Baccalauréat pour les nouveaux bacheliers) ;\n• Copie légalisée de la carte nationale d'identité ou du certificat de nationalité.\n\nTout dossier incomplet après la date limite du 5 décembre 2026 ne pourra être examiné par la commission nationale.`
+            },
+            {
+                id: 'n2',
+                titre: 'Publication des calendriers des contrôles continus du Semestre 1',
+                categorie: 'Examens',
+                date: '10 Novembre 2026',
+                auteur: 'Scolarité Centrale',
+                resume: 'Les plannings détaillés par faculté et la répartition par amphithéâtres pour les évaluations de mi-semestre sont désormais disponibles.',
+                contenu: `Les doyens des facultés et directeurs d'écoles portent à la connaissance des étudiants que les épreuves de contrôles continus du Semestre 1 se dérouleront du 1er au 12 décembre 2026.\n\nConsignes impératives :\n1. La présentation de la carte d'étudiant de l'année en cours est obligatoire à l'entrée des salles d'examen.\n2. Tout appareil électronique connecté (téléphone, montre connectée) doit être éteint et rangé dans les sacs.\n3. Les étudiants doivent se présenter 30 minutes avant le début de chaque épreuve.`
+            },
+            {
+                id: 'n3',
+                titre: 'Forum Université-Entreprises & Salon de l’Innovation Numérique',
+                categorie: 'Événements',
+                date: '08 Novembre 2026',
+                auteur: 'Cellule Insertion Professionnelle',
+                resume: 'Plus de 45 entreprises partenaires seront présentes sur le campus pour proposer des stages, des ateliers CV et des conférences métiers.',
+                contenu: `Ne manquez pas la 9ème édition du Forum Université-Entreprises qui se tiendra les 20 et 21 novembre 2026 au Grand Auditorium du Campus.\n\nAu programme :\n• Stands de recrutement pour les stages de fin d'études (Licence et Master) ;\n• Ateliers de simulation d'entretiens d'embauche animés par des DRH ;\n• Hackathon étudiant sur les solutions numériques durables avec prix d'incubation à la clé.\n\nEntrée libre sur présentation de la carte d'étudiant.`
+            },
+            {
+                id: 'n4',
+                titre: 'Modernisation du réseau Wi-Fi Campus et extension des horaires de la Bibliothèque',
+                categorie: 'Administration',
+                date: '03 Novembre 2026',
+                auteur: 'Présidence & CRI',
+                resume: 'De nouvelles bornes Wi-Fi 6 ont été déployées dans les zones d’étude et la Bibliothèque Centrale restera ouverte jusqu’à 21h.',
+                contenu: `Dans le cadre du schéma directeur du numérique universitaire, le Centre de Ressources Informatiques a achevé le déploiement de 80 nouvelles bornes Wi-Fi haute densité couvrant les amphithéâtres et les espaces verts du campus.\n\nPar ailleurs, afin d'offrir de meilleures conditions de révision à l'approche des examens, la Bibliothèque Universitaire Centrale étend ses horaires d'ouverture du lundi au samedi de 07h30 à 21h00 sans interruption.`
+            },
+            {
+                id: 'n5',
+                titre: 'Appel à candidatures : Programme de mobilité internationale CAMES / AUF',
+                categorie: 'Bourses',
+                date: '29 Octobre 2026',
+                auteur: 'Relations Internationales',
+                resume: 'Bourses de mobilité de 6 mois destinées aux étudiants inscrits en Master 2 et Doctorat dans les domaines scientifiques et juridiques.',
+                contenu: `La Direction des Relations Internationales lance un appel à candidatures pour des bourses de mobilité interuniversitaire au titre du second semestre.\n\nCritères d'éligibilité :\n• Être régulièrement inscrit en Master 2 ou en thèse de Doctorat ;\n• Avoir obtenu une moyenne générale supérieure ou égale à 14/20 ;\n• Présenter un projet de recherche validé par son directeur de mémoire ou de thèse.\n\nLes candidatures sont reçues au secrétariat de la DRI jusqu'au 25 novembre.`
+            },
+            {
+                id: 'n6',
+                titre: 'Modalités de retrait des diplômes de Licence et Master (Promotion 2025)',
+                categorie: 'Administration',
+                date: '24 Octobre 2026',
+                auteur: 'Division des Diplômes',
+                resume: 'Les lauréats de la session précédente peuvent désormais retirer leurs parchemins définitifs sur prise de rendez-vous.',
+                contenu: `La Division des Examens et Diplômes informe les étudiants admis lors de l'année académique précédente que les diplômes définitifs sont disponibles.\n\nLe retrait s'effectue exclusivement par l'intéressé(e) muni(e) de :\n• L'original de l'attestation provisoire de réussite ;\n• Une pièce d'identité en cours de validité ;\n• Le quitus de la Bibliothèque Universitaire.`
+            }
+        ];
+
+        // --- 3. NAVIGATION SPA (CHANGEMENT D'ONGLETS/VUES) ---
+        function navigateTo(viewId) {
+            // Masquer toutes les sections
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.classList.add('hidden');
+            });
+
+            // Afficher la section cible
+            const target = document.getElementById('view-' + viewId);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            // Mettre à jour l'état actif dans le menu Desktop
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.nav === viewId) {
+                    btn.className = 'nav-btn px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-2 bg-navy-800 text-white shadow-sm';
+                } else {
+                    btn.className = 'nav-btn px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition-all flex items-center gap-2';
+                }
+            });
+
+            // Mettre à jour l'état actif dans le menu Mobile
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                if (btn.dataset.nav === viewId) {
+                    btn.className = 'mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium bg-navy-800 text-white flex items-center gap-3';
+                } else {
+                    btn.className = 'mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 flex items-center gap-3';
+                }
+            });
+
+            // Remonter en haut de page en douceur
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- 4. RECHERCHE GLOBALE SUR L'ACCUEIL ---
+        function handleGlobalSearch(query) {
+            const resultsBox = document.getElementById('global-search-results');
+            const clearBtn = document.getElementById('clear-search-btn');
+            const q = query.trim().toLowerCase();
+
+            if (!q) {
+                resultsBox.classList.add('hidden');
+                clearBtn.classList.add('hidden');
+                return;
+            }
+
+            clearBtn.classList.remove('hidden');
+
+            const matchedFilieres = filieresData.filter(f => 
+                f.titre.toLowerCase().includes(q) || 
+                f.domaine.toLowerCase().includes(q) || 
+                f.niveau.toLowerCase().includes(q)
+            );
+
+            const matchedNews = actualitesData.filter(n => 
+                n.titre.toLowerCase().includes(q) || 
+                n.categorie.toLowerCase().includes(q) || 
+                n.resume.toLowerCase().includes(q)
+            );
+
+            if (matchedFilieres.length === 0 && matchedNews.length === 0) {
+                resultsBox.innerHTML = `
+                    <div class="p-6 text-center text-slate-500 text-sm">
+                        Aucun résultat trouvé pour « <span class="font-semibold text-navy-900">${escapeHtml(query)}</span> ».
+                    </div>
+                `;
+            } else {
+                let html = '';
+
+                if (matchedFilieres.length > 0) {
+                    html += `<div class="bg-slate-50 px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100">Filières & Formations (${matchedFilieres.length})</div>`;
+                    matchedFilieres.forEach(f => {
+                        html += `
+                            <div onclick="openFiliereModal('${f.id}'); clearGlobalSearch();" class="px-4 py-3 hover:bg-navy-50 cursor-pointer border-b border-slate-100 transition flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-navy-100 text-navy-800 mr-1.5">${f.niveau}</span>
+                                    <span class="font-semibold text-sm text-navy-900">${f.titre}</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">${f.domaine} • ${f.faculte}</p>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                            </div>
+                        `;
+                    });
+                }
+
+                if (matchedNews.length > 0) {
+                    html += `<div class="bg-slate-50 px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100">Actualités & Infos (${matchedNews.length})</div>`;
+                    matchedNews.forEach(n => {
+                        html += `
+                            <div onclick="openNewsModal('${n.id}'); clearGlobalSearch();" class="px-4 py-3 hover:bg-amber-50/50 cursor-pointer border-b border-slate-100 transition flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 mr-1.5">${n.categorie}</span>
+                                    <span class="font-semibold text-sm text-navy-900">${n.titre}</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">${n.date}</p>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                            </div>
+                        `;
+                    });
+                }
+
+                resultsBox.innerHTML = html;
+                lucide.createIcons();
+            }
+
+            resultsBox.classList.remove('hidden');
+        }
+
+        function clearGlobalSearch() {
+            document.getElementById('global-search-input').value = '';
+            document.getElementById('global-search-results').classList.add('hidden');
+            document.getElementById('clear-search-btn').classList.add('hidden');
+        }
+
+        // --- 5. RENDU ET FILTRAGE DES FILIÈRES ---
+        function renderFilieres(list) {
+            const grid = document.getElementById('filieres-grid');
+            const countLabel = document.getElementById('filieres-count');
+            countLabel.textContent = `Affichage de ${list.length} formation${list.length > 1 ? 's' : ''}`;
+
+            if (list.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bg-white rounded-2xl p-12 text-center border border-slate-200">
+                        <p class="text-slate-600 font-medium">Aucune filière ne correspond à vos critères de recherche.</p>
+                        <button onclick="resetFiliereFilters()" class="mt-4 px-4 py-2 rounded-xl bg-navy-800 text-white text-xs font-semibold">
+                            Afficher toutes les filières
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = list.map(f => {
+                let badgeColor = 'bg-blue-50 text-blue-700 border-blue-200';
+                if (f.niveau === 'Master') badgeColor = 'bg-amber-50 text-amber-800 border-amber-200';
+                if (f.niveau === 'Doctorat') badgeColor = 'bg-purple-50 text-purple-800 border-purple-200';
+
+                return `
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold border ${badgeColor}">
+                                    ${f.niveau}
+                                </span>
+                                <span class="text-xs font-medium text-slate-400">${f.duree}</span>
+                            </div>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider text-amber-600 block mb-1">
+                                ${f.domaine}
+                            </span>
+                            <h3 class="font-bold text-lg text-navy-900 leading-snug mb-3">
+                                ${f.titre}
+                            </h3>
+                            <p class="text-xs text-slate-500 flex items-center gap-1.5 mb-4">
+                                <i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
+                                ${f.faculte}
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <button onclick="openFiliereModal('${f.id}')" class="w-full py-2.5 px-4 rounded-xl bg-navy-50 hover:bg-navy-800 text-navy-900 hover:text-white font-semibold text-xs transition flex items-center justify-center gap-2">
+                                Consulter le programme <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function filterFilieres() {
+            const search = document.getElementById('filiere-search').value.trim().toLowerCase();
+            const level = document.getElementById('filiere-level-filter').value;
+            const domain = document.getElementById('filiere-domain-filter').value;
+
+            const filtered = filieresData.filter(f => {
+                const matchSearch = f.titre.toLowerCase().includes(search) || f.debouches.toLowerCase().includes(search);
+                const matchLevel = (level === 'ALL' || f.niveau === level);
+                const matchDomain = (domain === 'ALL' || f.domaine === domain);
+                return matchSearch && matchLevel && matchDomain;
+            });
+
+            renderFilieres(filtered);
+        }
+
+        function resetFiliereFilters() {
+            document.getElementById('filiere-search').value = '';
+            document.getElementById('filiere-level-filter').value = 'ALL';
+            document.getElementById('filiere-domain-filter').value = 'ALL';
+            renderFilieres(filieresData);
+        }
+
+        // --- 6. RENDU ET FILTRAGE DES ACTUALITÉS ---
+        function createNewsCardHtml(article) {
+            let catStyle = 'bg-slate-100 text-slate-700';
+            if (article.categorie === 'Examens') catStyle = 'bg-rose-50 text-rose-700';
+            if (article.categorie === 'Bourses') catStyle = 'bg-amber-50 text-amber-800';
+            if (article.categorie === 'Événements') catStyle = 'bg-emerald-50 text-emerald-700';
+            if (article.categorie === 'Administration') catStyle = 'bg-blue-50 text-blue-700';
+
+            return `
+                <article class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold ${catStyle}">
+                                ${article.categorie}
+                            </span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i> ${article.date}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-lg text-navy-900 leading-snug mb-3">
+                            ${article.titre}
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                            ${article.resume}
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs font-medium text-slate-400">${article.auteur}</span>
+                        <button onclick="openNewsModal('${article.id}')" class="text-xs font-bold text-navy-800 hover:text-amber-600 flex items-center gap-1 transition">
+                            Lire la suite <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderNews(list) {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = list.map(createNewsCardHtml).join('');
+            lucide.createIcons();
+        }
+
+        function renderHomeLatestNews() {
+            const homeGrid = document.getElementById('home-latest-news');
+            const latestThree = actualitesData.slice(0, 3);
+            homeGrid.innerHTML = latestThree.map(createNewsCardHtml).join('');
+            lucide.createIcons();
+        }
+
+        function filterNews(category) {
+            // Mettre à jour les boutons de filtre
+            document.querySelectorAll('.news-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === category) {
+                    btn.className = 'news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-navy-800 text-white transition';
+                } else {
+                    btn.className = 'news-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition';
+                }
+            });
+
+            if (category === 'ALL') {
+                renderNews(actualitesData);
+            } else {
+                const filtered = actualitesData.filter(n => n.categorie === category);
+                renderNews(filtered);
+            }
+        }
+
+        // --- 7. MODALES DÉTAILLÉES (FILIÈRE & ARTICLE) ---
+        function openFiliereModal(id) {
+            const f = filieresData.find(item => item.id === id);
+            if (!f) return;
+
+            const programmeList = f.programme.map(p => `
+                <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600 shrink-0 mt-1"></i>
+                    <span>${p}</span>
+                </li>
+            `).join('');
+
+            document.getElementById('modal-body').innerHTML = `
+                <div class="pr-8">
+                    <span class="inline-block px-3 py-1 rounded-lg text-xs font-bold bg-navy-800 text-white mb-3">
+                        ${f.niveau} • ${f.duree}
+                    </span>
+                    <h2 class="font-serif text-2xl font-bold text-navy-900 leading-tight">${f.titre}</h2>
+                    <p class="text-xs font-semibold text-amber-600 uppercase tracking-wider mt-1">${f.domaine} — ${f.faculte}</p>
+                </div>
+
+                <div class="mt-6 space-y-5">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-sm text-navy-900 mb-1 flex items-center gap-2">
+                            <i data-lucide="user-check" class="w-4 h-4 text-navy-700"></i> Conditions d'admission
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">${f.admission}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-navy-900 mb-3 flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-4 h-4 text-navy-700"></i> Organisation des enseignements
+                        </h4>
+                        <ul class="space-y-2.5">
+                            ${programmeList}
+                        </ul>
+                    </div>
+
+                    <div class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/70">
+                        <h4 class="font-bold text-sm text-navy-900 mb-1 flex items-center gap-2">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-amber-700"></i> Débouchés professionnels
+                        </h4>
+                        <p class="text-sm text-slate-700 leading-relaxed">${f.debouches}</p>
+                    </div>
+
+                    <div class="pt-3 flex flex-wrap gap-3">
+                        <button onclick="simulateDownload('Maquette_${f.id}.pdf')" class="flex-1 py-2.5 px-4 rounded-xl bg-navy-800 hover:bg-navy-700 text-white text-xs font-semibold flex items-center justify-center gap-2 transition">
+                            <i data-lucide="download" class="w-4 h-4"></i> Télécharger la maquette PDF
+                        </button>
+                        <button onclick="closeModal(); navigateTo('contacts');" class="flex-1 py-2.5 px-4 rounded-xl border border-slate-300 hover:bg-slate-50 text-navy-900 text-xs font-semibold flex items-center justify-center gap-2 transition">
+                            <i data-lucide="mail" class="w-4 h-4"></i> Poser une question à la scolarité
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function openNewsModal(id) {
+            const n = actualitesData.find(item => item.id === id);
+            if (!n) return;
+
+            const paragraphs = n.contenu.split('\n\n').map(p => 
+                `<p class="text-sm text-slate-700 leading-relaxed whitespace-pre-line">${p}</p>`
+            ).join('');
+
+            document.getElementById('modal-body').innerHTML = `
+                <div class="pr-8">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
+                            ${n.categorie}
+                        </span>
+                        <span class="text-xs text-slate-500">${n.date}</span>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-navy-900 leading-snug">${n.titre}</h2>
+                    <p class="text-xs text-slate-500 mt-2">Publié par : <span class="font-semibold text-navy-800">${n.auteur}</span></p>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-slate-100 space-y-4">
+                    ${paragraphs}
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+                    <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-navy-800 text-white text-xs font-semibold hover:bg-navy-700 transition">
+                        Fermer l'article
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        // Fermer la modale en cliquant sur l'arrière-plan sombre
+        document.getElementById('detail-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // --- 8. FAQ ACCORDÉON & FORMULAIRE DE CONTACT ---
+        function toggleFaq(index) {
+            const content = document.getElementById('faq-content-' + index);
+            const icon = document.getElementById('faq-icon-' + index);
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const service = document.getElementById('contact-service').value;
+            const refNum = 'UL-' + Math.floor(100000 + Math.random() * 900000);
+
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('confirmation-details').innerHTML = `
+                Votre dossier référence <strong>#${refNum}</strong> a été transmis au service <strong>${service}</strong>. Un accusé de réception vient d'être envoyé sur votre boîte mail.
+            `;
+            document.getElementById('contact-confirmation').classList.remove('hidden');
+            showToast('Demande envoyée au service ' + service);
+        }
+
+        function resetContactForm() {
+            document.getElementById('contact-form').reset();
+            document.getElementById('contact-confirmation').classList.add('hidden');
+            document.getElementById('contact-form').classList.remove('hidden');
+        }
+
+        // --- 9. UTILITAIRES (TOAST & TÉLÉCHARGEMENT SIMULÉ) ---
+        function simulateDownload(filename) {
+            showToast(`Téléchargement lancé : ${filename}`);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // --- 10. INITIALISATION AU CHARGEMENT ---
+        window.onload = function() {
+            renderHomeLatestNews();
+            renderFilieres(filieresData);
+            renderNews(actualitesData);
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
